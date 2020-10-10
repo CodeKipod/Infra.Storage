@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <LangVersion>8.0</LangVersion>
+    <Company>Roman Ambinder</Company>
+    <Authors>Roman Ambinder</Authors>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Copyright>Roman Ambinder</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <NeutralLanguage>English</NeutralLanguage>
+    <Description>Common implementations for storage abstractions</Description>
+    <PackageProjectUrl>https://github.com/CodeKipod/Storage</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/CodeKipod/Storage</RepositoryUrl>
+    <RepositoryType>GitHub</RepositoryType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Roman.Ambinder.Storage.Common\Roman.Ambinder.Storage.Common.csproj" />
+  </ItemGroup>
+
+</Project>

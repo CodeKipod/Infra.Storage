@@ -1,0 +1,84 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30523.141
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Roman.Ambinder.Storage.Common", "Common\Roman.Ambinder.Storage.Common\Roman.Ambinder.Storage.Common.csproj", "{DB7E3E18-8D8B-450E-97C1-958898BD7898}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{68D6BD1C-8E42-408E-933C-0722119C5873}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Impl", "Impl", "{1EFAA1AE-FBAE-4129-B967-740699B9E01D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{A47B09EE-8A47-4040-B6CD-F0C2A213688E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Roman.Ambinder.Storage.CommonImpl", "Common\Roman.Ambinder.Storage.CommonImpl\Roman.Ambinder.Storage.CommonImpl.csproj", "{0D4D7236-546C-4CFE-B8DC-C4D05B8462AA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EntityFrameworkCore", "EntityFrameworkCore", "{EAB41C06-7F47-47A7-998B-DD0D448BD02F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Common", "Impl\EntityFrameworkCore\Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Common\Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Common.csproj", "{18962861-2965-43D6-85A6-40AEF5C0569D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Facilities", "Facilities", "{483F9E84-7A81-4F7C-BA78-B16FF4B46D54}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Impl", "Impl\EntityFrameworkCore\Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Impl\Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Impl.csproj", "{B8F5FF21-4FD6-4B44-80B4-CE1118A3D935}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Roman.Ambinder.Storage.Impl.EntityFrameworkCore", "Impl\EntityFrameworkCore\Roman.Ambinder.Storage.Impl.EntityFrameworkCore\Roman.Ambinder.Storage.Impl.EntityFrameworkCore.csproj", "{D2FFD8ED-9437-4A8B-A76D-E8766A2253E3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "InMemory", "InMemory", "{62CD1A36-7238-4B59-8E45-BE029E93FC56}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FileSystem", "FileSystem", "{57173111-D2BF-44DD-BD17-7BB3EBBFB42D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EntityFrameworkCore", "EntityFrameworkCore", "{F0CD7CBE-A4EC-43DF-BB1D-15D07F2DCBF0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests", "Tests\EntityFrameworkCore\Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests\Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.csproj", "{7FAD38F1-2671-4AB1-9CAF-8F7E1AF91EFC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DB7E3E18-8D8B-450E-97C1-958898BD7898}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB7E3E18-8D8B-450E-97C1-958898BD7898}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB7E3E18-8D8B-450E-97C1-958898BD7898}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB7E3E18-8D8B-450E-97C1-958898BD7898}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D4D7236-546C-4CFE-B8DC-C4D05B8462AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D4D7236-546C-4CFE-B8DC-C4D05B8462AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D4D7236-546C-4CFE-B8DC-C4D05B8462AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D4D7236-546C-4CFE-B8DC-C4D05B8462AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18962861-2965-43D6-85A6-40AEF5C0569D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18962861-2965-43D6-85A6-40AEF5C0569D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18962861-2965-43D6-85A6-40AEF5C0569D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18962861-2965-43D6-85A6-40AEF5C0569D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8F5FF21-4FD6-4B44-80B4-CE1118A3D935}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8F5FF21-4FD6-4B44-80B4-CE1118A3D935}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8F5FF21-4FD6-4B44-80B4-CE1118A3D935}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8F5FF21-4FD6-4B44-80B4-CE1118A3D935}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2FFD8ED-9437-4A8B-A76D-E8766A2253E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2FFD8ED-9437-4A8B-A76D-E8766A2253E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2FFD8ED-9437-4A8B-A76D-E8766A2253E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2FFD8ED-9437-4A8B-A76D-E8766A2253E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7FAD38F1-2671-4AB1-9CAF-8F7E1AF91EFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7FAD38F1-2671-4AB1-9CAF-8F7E1AF91EFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7FAD38F1-2671-4AB1-9CAF-8F7E1AF91EFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7FAD38F1-2671-4AB1-9CAF-8F7E1AF91EFC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{DB7E3E18-8D8B-450E-97C1-958898BD7898} = {68D6BD1C-8E42-408E-933C-0722119C5873}
+		{0D4D7236-546C-4CFE-B8DC-C4D05B8462AA} = {68D6BD1C-8E42-408E-933C-0722119C5873}
+		{EAB41C06-7F47-47A7-998B-DD0D448BD02F} = {1EFAA1AE-FBAE-4129-B967-740699B9E01D}
+		{18962861-2965-43D6-85A6-40AEF5C0569D} = {483F9E84-7A81-4F7C-BA78-B16FF4B46D54}
+		{483F9E84-7A81-4F7C-BA78-B16FF4B46D54} = {EAB41C06-7F47-47A7-998B-DD0D448BD02F}
+		{B8F5FF21-4FD6-4B44-80B4-CE1118A3D935} = {483F9E84-7A81-4F7C-BA78-B16FF4B46D54}
+		{D2FFD8ED-9437-4A8B-A76D-E8766A2253E3} = {EAB41C06-7F47-47A7-998B-DD0D448BD02F}
+		{62CD1A36-7238-4B59-8E45-BE029E93FC56} = {1EFAA1AE-FBAE-4129-B967-740699B9E01D}
+		{57173111-D2BF-44DD-BD17-7BB3EBBFB42D} = {1EFAA1AE-FBAE-4129-B967-740699B9E01D}
+		{F0CD7CBE-A4EC-43DF-BB1D-15D07F2DCBF0} = {A47B09EE-8A47-4040-B6CD-F0C2A213688E}
+		{7FAD38F1-2671-4AB1-9CAF-8F7E1AF91EFC} = {F0CD7CBE-A4EC-43DF-BB1D-15D07F2DCBF0}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0C29162D-CA11-43A8-84EB-0922423F1731}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,39 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>Roman Ambinder</Authors>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <Copyright>Roman Ambinder</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/CodeKipod/Storage</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/CodeKipod/Storage</RepositoryUrl>
+    <RepositoryType>GitHub</RepositoryType>
+    <PackageReleaseNotes>Added Unit of work impl</PackageReleaseNotes>
+    <Description>Repository pattern implementation for Entity Framework Core</Description>
+    <NeutralLanguage>Engilish</NeutralLanguage>
+    <FileVersion>1.0.1.0</FileVersion>
+    <AssemblyVersion>1.0.1.0</AssemblyVersion>
+    <Version>1.1.0</Version>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.9">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Common\Roman.Ambinder.Storage.CommonImpl\Roman.Ambinder.Storage.CommonImpl.csproj" />
+    <ProjectReference Include="..\..\..\Common\Roman.Ambinder.Storage.Common\Roman.Ambinder.Storage.Common.csproj" />
+    <ProjectReference Include="..\Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Common\Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Common.csproj" />
+    <ProjectReference Include="..\Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Impl\Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Impl.csproj" />
+  </ItemGroup>
+
+</Project>

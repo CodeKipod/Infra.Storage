@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.UnitOfWork
 {
     public class EFCoreUnitOfWorkRepositoryFor<TKey, TEntity> :
-        IUnitOfWorkRepositoryFor<TKey, TEntity>
+        IUnitOfWorkSingleKeyRepositoryFor<TKey, TEntity>
         where TEntity : class, new()
     {
         protected readonly DbContextSafeUsageVisitor DbContextSafeUsageVisitor;

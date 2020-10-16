@@ -29,10 +29,13 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.NonHierarchicalE
         public static async Task<EFCoreUnitOfWorkRepositoryFor<int, Person>> TryGetUnitOfWorkRepositoryAsync()
         {
             var dbContextProvider = new SingleInstancePeopleDbContextProvider();
+          
             var repository = new EFCoreUnitOfWorkRepositoryFor<int, Person>(
                 dbContextProvider);
+
             await dbContextProvider.TryMigrateAsync(recreate: true)
                 .ConfigureAwait(false);
+
             return repository;
         }
     }

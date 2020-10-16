@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Roman.Ambinder.Storage.Common.Interfaces.UnitOfWork
 {
-    public interface IUnitOfWorkRepositoryFor<TKey, TEntity> : IDisposable
+    public interface IUnitOfWorkSingleKeyRepositoryFor<TKey, TEntity> : IDisposable
         where TEntity : class, new()
-    {       
+    {
         Task<OperationResult> TryCommitChangesAsync(CancellationToken cancellationToken = default);
 
         ISingleKeyLocalChangesStoreFor<TKey, TEntity> LocalChangesReposiotry { get; }

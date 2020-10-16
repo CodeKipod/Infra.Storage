@@ -1,7 +1,6 @@
 ﻿using Roman.Ambinder.DataTypes.OperationResults;
 using Roman.Ambinder.Storage.Common.Interfaces.SingleKey;
 using System;
-using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -12,8 +11,6 @@ namespace Roman.Ambinder.Storage.Common.Interfaces.LocalChangesStore
         where TEntity : class, new()
     {
         OperationResult TryAdd(TEntity newEntity);
-
-        //OperationResult TryAddRange(IEnumerable<TEntity> newEntities);
 
         Task<OperationResult> TryUpdateAsync(TKey key,
             Action<TEntity> updateAction,

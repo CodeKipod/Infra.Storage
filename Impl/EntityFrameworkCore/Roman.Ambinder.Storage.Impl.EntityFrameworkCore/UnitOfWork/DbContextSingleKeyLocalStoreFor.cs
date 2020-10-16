@@ -100,12 +100,6 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.UnitOfWork
             return DbContextSafeUsageVisitor.TryUse((dbSession) => dbSession.Add(newEntity));
         }
 
-        //public OperationResult TryAddRange(
-        //    IEnumerable<TEntity> newEntities)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Performance",
             "U2U1009:Async or iterator methods should avoid state machine generation for early exits (throws or synchronous returns)",
             Justification = "<Pending>")]

@@ -22,7 +22,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Roman.Ambinder.DataTypes.OperationResults" Version="1.1.3" />
+    <PackageReference Include="Roman.Ambinder.DataTypes.OperationResults" Version="1.1.4" />
   </ItemGroup>
 
 </Project>

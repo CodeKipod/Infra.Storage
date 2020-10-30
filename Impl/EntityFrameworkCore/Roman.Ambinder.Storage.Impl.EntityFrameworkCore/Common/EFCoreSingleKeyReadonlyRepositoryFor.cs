@@ -60,7 +60,7 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Common
                 dbSession.Set<TEntity>().AppendIncludeExpressions(toBeIncluded) :
                 dbSession.Set<TEntity>().AsNoTracking().AppendIncludeExpressions(toBeIncluded);
 
-            var buildKeyPredicateOpRes = PrimaryKeyExpressionBuilder.TryBuildForCompositeKey<TEntity>(dbSession, keys);
+            var buildKeyPredicateOpRes = PrimaryKeyExpressionBuilder.TryBuildForMultitypeCompositeKey<TEntity>(dbSession, keys);
             if (!buildKeyPredicateOpRes)
                 return buildKeyPredicateOpRes.ErrorMessage.AsFailedOpResOf<TEntity>();
 

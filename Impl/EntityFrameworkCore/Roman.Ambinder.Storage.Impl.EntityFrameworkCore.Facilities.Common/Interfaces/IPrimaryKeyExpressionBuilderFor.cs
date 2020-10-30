@@ -19,7 +19,7 @@ namespace Roman.Ambinder.Storage.EntityFrameworkCore.Facilities.Common
 
 
 
-        OperationResultOf<Expression<Func<TEntity, bool>>> TryBuildForCompositeKey<TEntity>(DbContext dbContext,
+        OperationResultOf<Expression<Func<TEntity, bool>>> TryBuildForMultitypeCompositeKey<TEntity>(DbContext dbContext,
             in object[] compostiteKeyParts)
           where TEntity : class, new();
     }

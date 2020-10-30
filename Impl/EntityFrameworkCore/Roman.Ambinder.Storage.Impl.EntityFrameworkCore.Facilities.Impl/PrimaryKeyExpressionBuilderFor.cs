@@ -72,7 +72,7 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Impl
             catch (Exception ex) { return ex.AsFailedOpResOf<Expression<Func<TEntity, bool>>>(); }
         }
 
-        public OperationResultOf<Expression<Func<TEntity, bool>>> TryBuildForCompositeKey<TEntity>(DbContext dbContext,
+        public OperationResultOf<Expression<Func<TEntity, bool>>> TryBuildForMultitypeCompositeKey<TEntity>(DbContext dbContext,
             in object[] compostiteKeyParts)
             where TEntity : class, new()
         {

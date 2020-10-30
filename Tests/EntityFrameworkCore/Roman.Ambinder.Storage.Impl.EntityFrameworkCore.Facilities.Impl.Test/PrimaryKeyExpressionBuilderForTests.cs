@@ -14,7 +14,7 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Impl.Test
 
             //Act 
             var buildKeyPredicteOpres = builder.TryBuildForCompositeKey<SameValueTypeComposedKeysEntity>(
-                ctx, keyParts:
+                ctx, compostiteKeyParts:
                 new object[] { 1, 2, 3 });
 
             //Assert
@@ -22,7 +22,7 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Impl.Test
         }
 
         [TestMethod]
-        public void InValidNumberOfCompositValueTypeKeys_TryBuildCompositeKey_BuiltFailure()
+        public void InvalidNumberOfCompositValueTypeKeys_TryBuildCompositeKey_BuiltFailure()
         {
             //Arrange 
             var builder = new PrimaryKeyExpressionBuilder();
@@ -30,7 +30,7 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Impl.Test
 
             //Act 
             var buildKeyPredicteOpres = builder.TryBuildForCompositeKey<SameValueTypeComposedKeysEntity>(
-                ctx, keyParts:
+                ctx, compostiteKeyParts:
                 new object[] { 1, 2 });
 
             //Assert
@@ -38,7 +38,7 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Impl.Test
         }
 
         [TestMethod]
-        public void InValidTypeOfCompositValueTypeKeys_TryBuildCompositeKey_BuiltFailure()
+        public void InvalidTypeOfCompositValueTypeKeys_TryBuildCompositeKey_BuiltFailure()
         {
             //Arrange 
             var builder = new PrimaryKeyExpressionBuilder();
@@ -46,7 +46,7 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Impl.Test
 
             //Act 
             var buildKeyPredicteOpres = builder.TryBuildForCompositeKey<SameValueTypeComposedKeysEntity>(
-                ctx, keyParts:
+                ctx, compostiteKeyParts:
                 new object[] { 1, 2 ,"3"});
 
             //Assert
@@ -62,7 +62,7 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Impl.Test
 
             //Act 
             var buildKeyPredicteOpres = builder.TryBuildForCompositeKey<SameRefTypeKeysComposedEntity>(
-                ctx, keyParts:
+                ctx, compostiteKeyParts:
                 new object[] { "1", "2", "3" });
 
             //Assert
@@ -84,7 +84,7 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Impl.Test
         }
 
         [TestMethod]
-        public void InValidTypeSingleValueTypeKey_TryBuildSingleKey_SuccessfulyBuilt()
+        public void InvalidTypeSingleValueTypeKey_TryBuildSingleKey_SuccessfulyBuilt()
         {
             //Arrange 
             var builder = new PrimaryKeyExpressionBuilder();

@@ -12,6 +12,13 @@ namespace Roman.Ambinder.Storage.EntityFrameworkCore.Facilities.Common
             in TKey key)
            where TEntity : class, new();
 
+        OperationResultOf<Expression<Func<TEntity, bool>>> TryBuildForCompositeKey<TKey, TEntity>(
+          DbContext dbContext,
+          in TKey [] compostiteKeyParts)
+         where TEntity : class, new();
+
+
+
         OperationResultOf<Expression<Func<TEntity, bool>>> TryBuildForCompositeKey<TEntity>(DbContext dbContext,
             in object[] compostiteKeyParts)
           where TEntity : class, new();

@@ -51,7 +51,11 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.UnitOfWork
                 dbSession.Set<TEntity>().AppendIncludeExpressions(toBeIncluded) :
                 dbSession.Set<TEntity>().AsNoTracking().AppendIncludeExpressions(toBeIncluded);
 
-            var filterExpression = PrimaryKeyExpressionBuilder.Build(dbSession, key);
+            var buildKeyPredicateOpRes = PrimaryKeyExpressionBuilder.TryBuildForSingleKey<TKey, TEntity>(dbSession, key);
+            if (!buildKeyPredicateOpRes)
+                return buildKeyPredicateOpRes.ErrorMessage.AsFailedOpResOf<TEntity>();
+
+            var filterExpression = buildKeyPredicateOpRes.Value;
             var foundEntity = await query.SingleOrDefaultAsync(filterExpression, cancellation)
                 .ConfigureAwait(false);
 
@@ -92,7 +96,7 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.UnitOfWork
             });
         }
 
-        public  OperationResult TryAdd(TEntity newEntity)
+        public OperationResult TryAdd(TEntity newEntity)
         {
             var validateEntityOpRes = KeyEntityValidator.Validate(newEntity);
             if (!validateEntityOpRes) return validateEntityOpRes;
@@ -144,6 +148,6 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.UnitOfWork
             }
         }
 
-      
+
     }
 }

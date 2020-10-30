@@ -24,7 +24,7 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Common
         public EFCoreSingleKeyReadonlyRepositoryFor(
             bool trackChangesOnRetrievedEntities,
             IDbContextProvider dbContextProvider = null,
-            IPrimaryKeyExpressionBuilderFor<TKey, TEntity> primaryKeyExpressionBuilder = null,
+            IPrimaryKeyExpressionBuilder primaryKeyExpressionBuilder = null,
             IKeyEntityValidatorFor<TKey, TEntity> keyEntityValidator = null)
             : base(new DbContextSafeUsageVisitor(dbContextProvider),
                  keyEntityValidator,
@@ -50,6 +50,32 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Common
         }
 
         protected async Task<OperationResultOf<TEntity>> InternalTryGetSingleAsync(
+         DbContext dbSession,
+         object[] keys,
+         bool trackChanges,
+         CancellationToken cancellation,
+         params Expression<Func<TEntity, object>>[] toBeIncluded)
+        {
+            var query = trackChanges ?
+                dbSession.Set<TEntity>().AppendIncludeExpressions(toBeIncluded) :
+                dbSession.Set<TEntity>().AsNoTracking().AppendIncludeExpressions(toBeIncluded);
+
+            var buildKeyPredicateOpRes = PrimaryKeyExpressionBuilder.TryBuildForCompositeKey<TEntity>(dbSession, keys);
+            if (!buildKeyPredicateOpRes)
+                return buildKeyPredicateOpRes.ErrorMessage.AsFailedOpResOf<TEntity>();
+
+            var filterExpression = buildKeyPredicateOpRes.Value;
+            var foundEntity = await query.SingleOrDefaultAsync(filterExpression, cancellation)
+                .ConfigureAwait(false);
+
+            var success = foundEntity != null;
+
+            return success
+                ? foundEntity.AsSuccessfulOpRes()
+                : $"Failed to find '{string.Join(",", keys)}' matching entity'".AsFailedOpResOf<TEntity>();
+        }
+
+        protected async Task<OperationResultOf<TEntity>> InternalTryGetSingleAsync(
             DbContext dbSession,
             TKey key,
             bool trackChanges,
@@ -60,7 +86,11 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Common
                 dbSession.Set<TEntity>().AppendIncludeExpressions(toBeIncluded) :
                 dbSession.Set<TEntity>().AsNoTracking().AppendIncludeExpressions(toBeIncluded);
 
-            var filterExpression = PrimaryKeyExpressionBuilder.Build(dbSession, key);
+            var buildKeyPredicateOpRes = PrimaryKeyExpressionBuilder.TryBuildForSingleKey<TKey, TEntity>(dbSession, key);
+            if (!buildKeyPredicateOpRes)
+                return buildKeyPredicateOpRes.ErrorMessage.AsFailedOpResOf<TEntity>();
+
+            var filterExpression = buildKeyPredicateOpRes.Value;
             var foundEntity = await query.SingleOrDefaultAsync(filterExpression, cancellation)
                 .ConfigureAwait(false);
 

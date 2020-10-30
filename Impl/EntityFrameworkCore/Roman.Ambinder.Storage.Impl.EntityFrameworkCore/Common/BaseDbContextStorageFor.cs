@@ -12,21 +12,21 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Common
     {
         protected readonly IDbContextSafeUsageVisitor DbContextSafeUsageVisitor;
         protected readonly IKeyEntityValidatorFor<TKey, TEntity> KeyEntityValidator;
-        protected readonly IPrimaryKeyExpressionBuilderFor<TKey, TEntity> PrimaryKeyExpressionBuilder;
+        protected readonly IPrimaryKeyExpressionBuilder PrimaryKeyExpressionBuilder;
 
         protected BaseDbContextStorageFor(
             IDbContextSafeUsageVisitor dbContextSafeUsageVisitor,
             IKeyEntityValidatorFor<TKey, TEntity> keyEntityValidator = null,
-            IPrimaryKeyExpressionBuilderFor<TKey, TEntity> primaryKeyExpressionBuilder = null)
+            IPrimaryKeyExpressionBuilder primaryKeyExpressionBuilder = null)
         {
-            DbContextSafeUsageVisitor = dbContextSafeUsageVisitor??
-                throw new ArgumentNullException(nameof(dbContextSafeUsageVisitor)); 
+            DbContextSafeUsageVisitor = dbContextSafeUsageVisitor ??
+                throw new ArgumentNullException(nameof(dbContextSafeUsageVisitor));
 
             KeyEntityValidator = keyEntityValidator ??
                 new VoidKeyEntityValidatorFor<TKey, TEntity>();
 
             PrimaryKeyExpressionBuilder = primaryKeyExpressionBuilder ??
-                new PrimaryKeyExpressionBuilder<TKey, TEntity>();
+                new PrimaryKeyExpressionBuilder();
         }
     }
 }

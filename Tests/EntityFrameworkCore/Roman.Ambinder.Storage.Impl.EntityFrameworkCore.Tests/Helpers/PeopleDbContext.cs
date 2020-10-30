@@ -7,6 +7,7 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.Helpers
     {
         public PeopleDbContext()
         {
+            
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

@@ -13,5 +13,7 @@ namespace Roman.Ambinder.Storage.CommonImpl
             return entity!=null ? OperationResult.Successful : 
                 new OperationResult("Entity cannot be null");
         }
+
+        public OperationResult Validate(object[] compositeKey) => OperationResult.Successful;
     }
 }

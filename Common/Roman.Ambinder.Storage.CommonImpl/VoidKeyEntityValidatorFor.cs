@@ -9,5 +9,7 @@ namespace Roman.Ambinder.Storage.CommonImpl
         public OperationResult Validate(TKey key) => OperationResult.Successful;
 
         public OperationResult Validate(TEntity entity) => OperationResult.Successful;
+
+        public OperationResult Validate(object[] compositeKey) => OperationResult.Successful;
     }
 }

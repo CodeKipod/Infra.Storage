@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Roman.Ambinder.DataTypes.OperationResults;
+using Roman.Ambinder.Storage.Common.DataTypes;
 using Roman.Ambinder.Storage.Common.Interfaces;
 using Roman.Ambinder.Storage.Common.Interfaces.SingleKey;
 using Roman.Ambinder.Storage.Common.Interfaces.SingleKey.RespositoryOperations;
@@ -77,10 +78,11 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.SingleKey
                 : $"Failed to find '{key}' matching entity'".AsFailedOpResOf<TEntity>();
         }
 
-        public Task<OperationResultOf<IReadOnlyCollection<TEntity>>> TryGetMultipleAsync(
+        public Task<OperationResultOf<PagedItemsResultOf<TEntity>>> TryGetMultipleAsync(
             Expression<Func<TEntity, bool>> filter,
             Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
             CancellationToken cancellationToken = default,
+            PagingParams pagingParams = null,
             params Expression<Func<TEntity, object>>[] toBeIncluded)
         {
             return DbContextSafeUsageVisitor.TryUseAsync(async dbSession =>
@@ -103,17 +105,20 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.SingleKey
                 if (orderBy != null)
                     query = orderBy(query);
 
-                IReadOnlyCollection<TEntity> foundEntities =
-                    await query.ToArrayAsync(cancellationToken)
-                        .ConfigureAwait(false);
+                var pagedRes = await query.ToPagedResultsArrayAsync(pagingParams, cancellationToken)
+                     .ConfigureAwait(false);
 
-                var success = foundEntities != null && foundEntities.Count > 0;
+
+                var success = pagedRes != null && pagedRes.Items != null && pagedRes.Items.Count > 0;
+
 
                 if (success)
-                    return foundEntities.AsSuccessfulOpRes();
+                {
+                    return pagedRes.AsSuccessfulOpRes();
+                }
 
                 return "Failed to find any filter matching entities"
-                    .AsFailedOpResOf<IReadOnlyCollection<TEntity>>();
+                    .AsFailedOpResOf<PagedItemsResultOf<TEntity>>();
             });
         }
     }

@@ -52,7 +52,7 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.SingleKey.NonHie
 
             //Assert
             Assert.IsTrue(getOpRes, getOpRes.ErrorMessage);
-            Assert.AreEqual(getOpRes.Value.Count, numberOfPeople);
+            Assert.AreEqual(getOpRes.Value.Items.Count, numberOfPeople);
         }
 
 
@@ -83,8 +83,8 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.SingleKey.NonHie
 
             //Assert
             Assert.IsTrue(getOpRes, getOpRes.ErrorMessage);
-            Assert.AreEqual(numberOfPeople, getOpRes.Value.Count);
-            Assert.IsTrue(localRepo.OrderBy(p => p.Age).SequenceEqual(getOpRes.Value));
+            Assert.AreEqual(numberOfPeople, getOpRes.Value.Items.Count);
+            Assert.IsTrue(localRepo.OrderBy(p => p.Age).SequenceEqual(getOpRes.Value.Items));
         }
 
     }

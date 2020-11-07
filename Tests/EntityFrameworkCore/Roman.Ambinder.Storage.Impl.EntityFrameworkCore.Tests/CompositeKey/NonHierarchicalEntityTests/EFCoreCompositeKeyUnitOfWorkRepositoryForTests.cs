@@ -16,7 +16,7 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.CompositeKey.Non
             var person = CompsiteKeyRepositoryArranger.CreatePerson();
 
             //Act
-            var addOpRes = unitOfWork.LocalChangesReposiotry.TryAdd(person);
+            var addOpRes = await unitOfWork.Repository.TryAddAsync(person).ConfigureAwait(false);
             var saveOpRes = await unitOfWork.TryCommitChangesAsync().ConfigureAwait(false);
 
             //Assert
@@ -32,13 +32,13 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.CompositeKey.Non
                 .TryGetUnitOfWorkRepositoryAsync()
                 .ConfigureAwait(false);
             var person = CompsiteKeyRepositoryArranger.CreatePerson();
-            var addOpRes = unitOfWork.LocalChangesReposiotry.TryAdd(person);
+            var addOpRes = await unitOfWork.Repository.TryAddAsync(person);
             Assert.IsTrue(addOpRes, addOpRes.ErrorMessage);
             var commitOpRes = await unitOfWork.TryCommitChangesAsync().ConfigureAwait(false);
             Assert.IsTrue(commitOpRes, commitOpRes.ErrorMessage);
 
             //Act
-            var getOpRes = await unitOfWork.LocalChangesReposiotry.TryGetSingleAsync(
+            var getOpRes = await unitOfWork.Repository.TryGetSingleAsync(
                 new object[] { person.Key1, person.Key2, person.Key3 })
                 .ConfigureAwait(false);
 
@@ -57,7 +57,7 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.CompositeKey.Non
             var existingEntityId = new object[] { person.Key1, person.Key2, person.Key3 };
 
             //Act
-            var updateOpRes = await unitOfWork.LocalChangesReposiotry.TryUpdateAsync(existingEntityId,
+            var updateOpRes = await unitOfWork.Repository.TryUpdateAsync(existingEntityId,
                 p =>
                 {
                     p.FirstName = updatedValue;
@@ -66,7 +66,7 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.CompositeKey.Non
 
             //Assert
             Assert.IsTrue(updateOpRes, updateOpRes.ErrorMessage);
-            var getOpRes = await unitOfWork.LocalChangesReposiotry.TryGetSingleAsync(existingEntityId)
+            var getOpRes = await unitOfWork.Repository.TryGetSingleAsync(existingEntityId)
                 .ConfigureAwait(false);
             Assert.AreEqual(getOpRes.Value.FirstName, updatedValue);
             Assert.AreEqual(getOpRes.Value.LastName, updatedValue);
@@ -81,14 +81,14 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.CompositeKey.Non
             var existingEntityId = new object[] { person.Key1, person.Key2, person.Key3 };
 
             //Act
-            var removeOpRes = await unitOfWork.LocalChangesReposiotry.TryRemoveAsync(existingEntityId)
+            var removeOpRes = await unitOfWork.Repository.TryRemoveAsync(existingEntityId)
                 .ConfigureAwait(false);
             var commitOpRes = await unitOfWork.TryCommitChangesAsync().ConfigureAwait(false);
 
             //Assert
             Assert.IsTrue(commitOpRes, commitOpRes.ErrorMessage);
             Assert.IsTrue(removeOpRes, removeOpRes.ErrorMessage);
-            var getOpRes = await unitOfWork.LocalChangesReposiotry.TryGetSingleAsync(existingEntityId)
+            var getOpRes = await unitOfWork.Repository.TryGetSingleAsync(existingEntityId)
                 .ConfigureAwait(false);
             Assert.IsFalse(getOpRes);
         }
@@ -97,7 +97,7 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.CompositeKey.Non
             EFCoreCompositeKeyUnitOfWorkRepositoryFor<CompsiteKeyPerson> unitOfWork)
         {
             var person = CompsiteKeyRepositoryArranger.CreatePerson();
-            var addOpRes = unitOfWork.LocalChangesReposiotry.TryAdd(person);
+            var addOpRes =await unitOfWork.Repository.TryAddAsync(person);
             Assert.IsTrue(addOpRes, addOpRes.ErrorMessage);
             var commitOpRes = await unitOfWork.TryCommitChangesAsync().ConfigureAwait(false);
             Assert.IsTrue(commitOpRes, commitOpRes.ErrorMessage);

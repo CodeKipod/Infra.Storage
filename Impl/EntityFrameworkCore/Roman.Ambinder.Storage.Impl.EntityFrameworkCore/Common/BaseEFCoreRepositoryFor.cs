@@ -20,15 +20,20 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Common
         ISingleKeyRepositoryFor<TKey, TEntity>
         where TEntity : class, new()
     {
+        private readonly bool _saveAfterChange;
+
         protected BaseEFCoreRepositoryFor(IDbContextProvider dbContextProvider,
             bool trackChangesOnRetrievedEntities,
+            bool saveAfterChange,
             IPrimaryKeyExpressionBuilder primaryKeyExpressionBuilder = null,
             IKeyEntityValidatorFor<TKey, TEntity> keyEntityValidator = null)
             : base(trackChangesOnRetrievedEntities: trackChangesOnRetrievedEntities,
                    dbContextProvider,
                    primaryKeyExpressionBuilder,
                    keyEntityValidator: keyEntityValidator)
-        { }
+        {
+            _saveAfterChange = saveAfterChange;
+        }
 
         public Task<OperationResultOf<TEntity>> TryAddAsync(
             Action<TEntity> initAction = null,
@@ -137,11 +142,14 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Common
             }).ConfigureAwait(false);
         }
 
-        private static async Task<OperationResultOf<TResult>> SaveChangesAndReturnResultAsync<TResult>(
+        private async Task<OperationResultOf<TResult>> SaveChangesAndReturnResultAsync<TResult>(
           DbContext dbSession,
           TResult result,
           CancellationToken cancellationToken)
         {
+            if (!_saveAfterChange)
+                return result.AsSuccessfulOpRes();
+
             var dbChangesMade = await dbSession.SaveChangesAsync(cancellationToken)
                 .ConfigureAwait(false);
 

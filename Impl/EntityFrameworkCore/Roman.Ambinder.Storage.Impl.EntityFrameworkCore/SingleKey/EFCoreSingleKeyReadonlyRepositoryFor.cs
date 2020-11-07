@@ -16,7 +16,7 @@ using System.Threading.Tasks;
 namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.SingleKey
 {
     public class EFCoreSingleKeyReadonlyRepositoryFor<TKey, TEntity> :
-        BaseDbContextStorageFor<TKey, TEntity>,
+        BaseEFCoreStorageFor<TKey, TEntity>,
         IRepositoryGetOperationsFor<TKey, TEntity>
        where TEntity : class, new()
     {

@@ -1,4 +1,5 @@
 ﻿using Roman.Ambinder.DataTypes.OperationResults;
+using Roman.Ambinder.Storage.Common.Interfaces.Common;
 using Roman.Ambinder.Storage.Common.Interfaces.Common.UnitOfWork;
 using Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Common;
 using Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Impl;
@@ -19,10 +20,10 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Common
             dbContextProvider = dbContextProvider
                 ?? throw new ArgumentNullException(nameof(dbContextProvider));
 
-            DbContextSafeUsageVisitor = new DbContextSafeUsageVisitor(dbContextProvider);
+            Repository =
+                new EFCoreRepositoryFor<TKey, TEntity>(dbContextProvider);
 
-            LocalChangesReposiotry =
-                new DbContextLocalStoreFor<TKey, TEntity>(DbContextSafeUsageVisitor);
+            DbContextSafeUsageVisitor = new DbContextSafeUsageVisitor(dbContextProvider);
         }
 
         public Task<OperationResult> TryCommitChangesAsync(
@@ -41,6 +42,6 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Common
 
         public void Dispose() => DbContextSafeUsageVisitor.Dispose();
 
-        public ILocalChangesStoreFor<TKey, TEntity> LocalChangesReposiotry { get; }
+        public IRepositoryFor<TKey, TEntity> Repository { get; }
     }
 }

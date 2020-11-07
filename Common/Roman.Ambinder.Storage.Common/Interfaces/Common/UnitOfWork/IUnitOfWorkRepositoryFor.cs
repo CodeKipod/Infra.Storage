@@ -11,6 +11,6 @@ namespace Roman.Ambinder.Storage.Common.Interfaces.Common.UnitOfWork
         Task<OperationResult> TryCommitChangesAsync(
             CancellationToken cancellationToken = default);
 
-        ILocalChangesStoreFor<TKey, TEntity> LocalChangesReposiotry { get; }
+        IRepositoryFor<TKey, TEntity> Repository { get; }
     }
 }

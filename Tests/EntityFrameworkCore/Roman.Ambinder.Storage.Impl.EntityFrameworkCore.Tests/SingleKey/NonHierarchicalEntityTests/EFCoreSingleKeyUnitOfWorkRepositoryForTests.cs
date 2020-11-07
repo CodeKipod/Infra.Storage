@@ -16,7 +16,7 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.SingleKey.NonHie
             var person = SingleKeyRepositoryArranger.CreatePerson();
 
             //Act
-            var addOpRes = unitOfWork.LocalChangesReposiotry.TryAdd(person);
+            var addOpRes = await unitOfWork.Repository.TryAddAsync(person);
             var saveOpRes = await unitOfWork.TryCommitChangesAsync().ConfigureAwait(false);
 
             //Assert
@@ -30,13 +30,13 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.SingleKey.NonHie
             //Arrange
             var unitOfWork = await SingleKeyRepositoryArranger.TryGetUnitOfWorkRepositoryAsync().ConfigureAwait(false);
             var person = SingleKeyRepositoryArranger.CreatePerson();
-            var addOpRes = unitOfWork.LocalChangesReposiotry.TryAdd(person);
+            var addOpRes = await unitOfWork.Repository.TryAddAsync(person);
             Assert.IsTrue(addOpRes, addOpRes.ErrorMessage);
             var commitOpRes = await unitOfWork.TryCommitChangesAsync().ConfigureAwait(false);
             Assert.IsTrue(commitOpRes, commitOpRes.ErrorMessage);
 
             //Act
-            var getOpRes = await unitOfWork.LocalChangesReposiotry.TryGetSingleAsync(person.Id)
+            var getOpRes = await unitOfWork.Repository.TryGetSingleAsync(person.Id)
                 .ConfigureAwait(false);
 
             //Assert
@@ -54,7 +54,7 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.SingleKey.NonHie
             var existingEntityId = person.Id;
 
             //Act
-            var updateOpRes = await unitOfWork.LocalChangesReposiotry.TryUpdateAsync(existingEntityId,
+            var updateOpRes = await unitOfWork.Repository.TryUpdateAsync(existingEntityId,
                 p =>
                 {
                     p.FirstName = updatedValue;
@@ -63,7 +63,7 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.SingleKey.NonHie
 
             //Assert
             Assert.IsTrue(updateOpRes, updateOpRes.ErrorMessage);
-            var getOpRes = await unitOfWork.LocalChangesReposiotry.TryGetSingleAsync(existingEntityId)
+            var getOpRes = await unitOfWork.Repository.TryGetSingleAsync(existingEntityId)
                 .ConfigureAwait(false);
             Assert.AreEqual(getOpRes.Value.FirstName, updatedValue);
             Assert.AreEqual(getOpRes.Value.LastName, updatedValue);
@@ -78,22 +78,22 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.SingleKey.NonHie
             var existingEntityId = person.Id;
 
             //Act
-            var removeOpRes = await unitOfWork.LocalChangesReposiotry.TryRemoveAsync(existingEntityId)
+            var removeOpRes = await unitOfWork.Repository.TryRemoveAsync(existingEntityId)
                 .ConfigureAwait(false);
             var commitOpRes = await unitOfWork.TryCommitChangesAsync().ConfigureAwait(false);
 
             //Assert
             Assert.IsTrue(commitOpRes, commitOpRes.ErrorMessage);
             Assert.IsTrue(removeOpRes, removeOpRes.ErrorMessage);
-            var getOpRes = await unitOfWork.LocalChangesReposiotry.TryGetSingleAsync(existingEntityId)
+            var getOpRes = await unitOfWork.Repository.TryGetSingleAsync(existingEntityId)
                 .ConfigureAwait(false);
             Assert.IsFalse(getOpRes);
         }
 
-        private static async Task<SingleKey.Entities.SingleKeyPerson> CreateAndCommitPersonAsync(BaseEFCoreUnitOfWorkRepositoryFor<int, Entities.SingleKeyPerson> unitOfWork)
+        private static async Task<Entities.SingleKeyPerson> CreateAndCommitPersonAsync(BaseEFCoreUnitOfWorkRepositoryFor<int, Entities.SingleKeyPerson> unitOfWork)
         {
             var person = SingleKeyRepositoryArranger.CreatePerson();
-            var addOpRes = unitOfWork.LocalChangesReposiotry.TryAdd(person);
+            var addOpRes = await unitOfWork.Repository.TryAddAsync(person);
             Assert.IsTrue(addOpRes, addOpRes.ErrorMessage);
             var commitOpRes = await unitOfWork.TryCommitChangesAsync().ConfigureAwait(false);
             Assert.IsTrue(commitOpRes, commitOpRes.ErrorMessage);

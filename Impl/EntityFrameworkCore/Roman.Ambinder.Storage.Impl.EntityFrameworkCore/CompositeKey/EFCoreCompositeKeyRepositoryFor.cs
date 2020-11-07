@@ -21,6 +21,7 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.CompositeKey
             IKeyEntityValidatorFor<object[], TEntity> keyEntityValidator = null)
             : base(dbContextProvider,
                   trackChangesOnRetrievedEntities: false,
+                  saveAfterChange: true,
                   primaryKeyExpressionBuilder,
                   keyEntityValidator: keyEntityValidator)
         { }

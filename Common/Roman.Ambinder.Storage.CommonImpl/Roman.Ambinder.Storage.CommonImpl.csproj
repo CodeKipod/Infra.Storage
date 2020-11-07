@@ -6,7 +6,7 @@
     <Company>Roman Ambinder</Company>
     <Authors>Roman Ambinder</Authors>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <Copyright>Roman Ambinder</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <NeutralLanguage>English</NeutralLanguage>
@@ -14,6 +14,7 @@
     <PackageProjectUrl>https://github.com/CodeKipod/Storage</PackageProjectUrl>
     <RepositoryUrl>https://github.com/CodeKipod/Storage</RepositoryUrl>
     <RepositoryType>GitHub</RepositoryType>
+    <Version>1.1.0</Version>
   </PropertyGroup>
 
   <ItemGroup>

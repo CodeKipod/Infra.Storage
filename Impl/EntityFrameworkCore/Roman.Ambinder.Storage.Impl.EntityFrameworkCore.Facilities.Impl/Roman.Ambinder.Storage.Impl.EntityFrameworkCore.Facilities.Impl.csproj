@@ -11,6 +11,8 @@
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <LangVersion>8.0</LangVersion>
+    <Version>1.2.0</Version>
+    <Copyright>Roman Ambinder</Copyright>
   </PropertyGroup>
 
   <ItemGroup>

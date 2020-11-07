@@ -19,7 +19,7 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Common
     {
         public DbContextLocalStoreFor(
             IDbContextSafeUsageVisitor dbContextSafeUsageVisitor,
-            IKeyEntityValidatorFor<TKey,TEntity> keyEntityValidator = null)
+            IKeyEntityValidatorFor<TKey, TEntity> keyEntityValidator = null)
             : base(dbContextSafeUsageVisitor, keyEntityValidator)
         { }
 

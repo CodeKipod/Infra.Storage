@@ -8,11 +8,11 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Impl.Test
         [TestMethod]
         public void ValidCompositValueTypeKeys_TryBuildForMultitypeCompositeKey_SuccessfulyBuilt()
         {
-            //Arrange 
+            //Arrange
             var builder = new PrimaryKeyExpressionBuilder();
             using var ctx = new MyDbContext();
 
-            //Act 
+            //Act
             var buildKeyPredicteOpres = builder.TryBuildForMultitypeCompositeKey<SameValueTypeComposedKeysEntity>(
                 ctx, compostiteKeyParts:
                 new object[] { 1, 2, 3 });
@@ -24,11 +24,11 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Impl.Test
         [TestMethod]
         public void InvalidNumberOfCompositValueTypeKeys_TryBuildForMultitypeCompositeKey_BuiltFailure()
         {
-            //Arrange 
+            //Arrange
             var builder = new PrimaryKeyExpressionBuilder();
             using var ctx = new MyDbContext();
 
-            //Act 
+            //Act
             var buildKeyPredicteOpres = builder.TryBuildForMultitypeCompositeKey<SameValueTypeComposedKeysEntity>(
                 ctx, compostiteKeyParts:
                 new object[] { 1, 2 });
@@ -40,14 +40,14 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Impl.Test
         [TestMethod]
         public void InvalidTypeOfCompositValueTypeKeys_TryBuildForMultitypeCompositeKey_BuiltFailure()
         {
-            //Arrange 
+            //Arrange
             var builder = new PrimaryKeyExpressionBuilder();
             using var ctx = new MyDbContext();
 
-            //Act 
+            //Act
             var buildKeyPredicteOpres = builder.TryBuildForMultitypeCompositeKey<SameValueTypeComposedKeysEntity>(
                 ctx, compostiteKeyParts:
-                new object[] { 1, 2 ,"3"});
+                new object[] { 1, 2, "3" });
 
             //Assert
             Assert.IsFalse(buildKeyPredicteOpres, buildKeyPredicteOpres.ErrorMessage);
@@ -56,11 +56,11 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Impl.Test
         [TestMethod]
         public void ValidCompositRefTypeKeys_TryBuildForMultitypeCompositeKey_SuccessfulyBuilt()
         {
-            //Arrange 
+            //Arrange
             var builder = new PrimaryKeyExpressionBuilder();
             using var ctx = new MyDbContext();
 
-            //Act 
+            //Act
             var buildKeyPredicteOpres = builder.TryBuildForMultitypeCompositeKey<SameRefTypeKeysComposedEntity>(
                 ctx, compostiteKeyParts:
                 new object[] { "1", "2", "3" });

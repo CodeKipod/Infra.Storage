@@ -16,7 +16,7 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Common
 
         protected BaseDbContextStorageFor(
             IDbContextSafeUsageVisitor dbContextSafeUsageVisitor,
-            IKeyEntityValidatorFor<TKey,TEntity> keyEntityValidator = null,
+            IKeyEntityValidatorFor<TKey, TEntity> keyEntityValidator = null,
             IPrimaryKeyExpressionBuilder primaryKeyExpressionBuilder = null)
         {
             DbContextSafeUsageVisitor = dbContextSafeUsageVisitor ??

@@ -53,7 +53,7 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Common
                 //await Task.WhenAll(countTask, getPagedResultTask)
                 //    .ConfigureAwait(false);
 
-                var totalNumberOfItems = await query.CountAsync(cancellationToken); 
+                var totalNumberOfItems = await query.CountAsync(cancellationToken);
 
                 pagedResults = new PagedItemsResultOf<T>(
                     pagingParams.CurrentPage,

@@ -14,7 +14,7 @@ namespace Roman.Ambinder.Storage.Common.Interfaces.Common.UnitOfWork
         Task<OperationResult> TryUpdateAsync(TKey key,
             Action<TEntity> updateAction,
             CancellationToken cancellation = default);
-        
+
         Task<OperationResult> TryRemoveAsync(TKey key,
             CancellationToken cancellationToken = default);
     }

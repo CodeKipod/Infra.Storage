@@ -6,6 +6,5 @@ namespace Roman.Ambinder.Storage.Common.Interfaces.UnitOfWork
         IUnitOfWorkRepositoryFor<object[], TEntity>
         where TEntity : class, new()
     {
-
     }
 }

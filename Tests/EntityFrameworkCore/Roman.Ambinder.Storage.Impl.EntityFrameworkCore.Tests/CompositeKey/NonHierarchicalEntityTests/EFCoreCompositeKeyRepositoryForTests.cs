@@ -33,7 +33,6 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.CompositeKey.Non
             Assert.IsTrue(addOpRes, addOpRes.ErrorMessage);
             var existingEntityId = new object[] { addOpRes.Value.Key1, addOpRes.Value.Key2, addOpRes.Value.Key3 };
 
-
             //Act
             var getOpRes = await repository.TryGetSingleAsync(existingEntityId)
                 .ConfigureAwait(false);
@@ -42,7 +41,6 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.CompositeKey.Non
             Assert.IsTrue(getOpRes, getOpRes.ErrorMessage);
             Assert.AreEqual(getOpRes.Value, addOpRes.Value);
         }
-
 
         [TestMethod]
         public async Task ExistingPerson_Update_Updated()
@@ -94,6 +92,5 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.CompositeKey.Non
             var getOpRes = await repository.TryGetSingleAsync(existingEntityId).ConfigureAwait(false);
             Assert.IsFalse(getOpRes);
         }
-
     }
 }

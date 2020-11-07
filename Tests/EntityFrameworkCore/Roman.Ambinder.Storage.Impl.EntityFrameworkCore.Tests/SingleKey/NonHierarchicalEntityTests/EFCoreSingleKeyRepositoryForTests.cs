@@ -41,7 +41,6 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.SingleKey.NonHie
             Assert.AreEqual(getOpRes.Value, addOpRes.Value);
         }
 
-
         [TestMethod]
         public async Task ExistingPerson_Update_Updated()
         {
@@ -92,6 +91,5 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.SingleKey.NonHie
             var getOpRes = await repository.TryGetSingleAsync(existingEntityId).ConfigureAwait(false);
             Assert.IsFalse(getOpRes);
         }
- 
     }
 }

@@ -10,7 +10,7 @@ namespace Roman.Ambinder.Storage.CommonImpl
 
         public OperationResult Validate(TEntity entity)
         {
-            return entity!=null ? OperationResult.Successful : 
+            return entity != null ? OperationResult.Successful :
                 new OperationResult("Entity cannot be null");
         }
 

@@ -2,7 +2,6 @@
 
 namespace Roman.Ambinder.Storage.Common.DataTypes
 {
-
     public class PagedItemsResultOf<T> : BasePagedResult
     {
         public IReadOnlyCollection<T> Items { get; set; }

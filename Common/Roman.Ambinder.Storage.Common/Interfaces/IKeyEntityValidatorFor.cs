@@ -10,5 +10,4 @@ namespace Roman.Ambinder.Storage.Common.Interfaces
 
         OperationResult Validate(TValue entity);
     }
-
 }

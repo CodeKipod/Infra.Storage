@@ -2,8 +2,8 @@
 using Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.SingleKey.Entities;
 using System.Threading;
 using System.Threading.Tasks;
-using CompositeKeyUnitOfWorkRepository = Roman.Ambinder.Storage.Impl.EntityFrameworkCore.CompositeKey.EFCoreCompositeKeyUnitOfWorkRepositoryFor<Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.SingleKey.Entities.CompsiteKeyPerson>;
 using CompositeKeyRepository = Roman.Ambinder.Storage.Impl.EntityFrameworkCore.CompositeKey.EFCoreCompositeKeyRepositoryFor<Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.SingleKey.Entities.CompsiteKeyPerson>;
+using CompositeKeyUnitOfWorkRepository = Roman.Ambinder.Storage.Impl.EntityFrameworkCore.CompositeKey.EFCoreCompositeKeyUnitOfWorkRepositoryFor<Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.SingleKey.Entities.CompsiteKeyPerson>;
 
 namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.CompositeKey.NonHierarchicalEntityTests
 {

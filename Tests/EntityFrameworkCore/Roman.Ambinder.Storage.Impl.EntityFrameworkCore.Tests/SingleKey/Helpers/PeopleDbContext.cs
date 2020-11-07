@@ -5,6 +5,5 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.SingleKey.Helper
 {
     public class PeopleDbContext : SingleEntityTypeDbContextOf<SingleKeyPerson>
     {
-     
     }
 }

@@ -8,11 +8,11 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Impl.Test
         [TestMethod]
         public void ValidCompositValueTypeKeys_TryBuildForCompositeKey_SuccessfulyBuilt()
         {
-            //Arrange 
+            //Arrange
             var builder = new PrimaryKeyExpressionBuilder();
             using var ctx = new MyDbContext();
 
-            //Act 
+            //Act
             var buildKeyPredicteOpres = builder.
                 TryBuildForCompositeKey<int, SameValueTypeComposedKeysEntity>(
                 ctx, compostiteKeyParts:
@@ -25,11 +25,11 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Impl.Test
         [TestMethod]
         public void InvalidNumberOfCompositValueTypeKeys_TryBuildForCompositeKey_BuiltFailure()
         {
-            //Arrange 
+            //Arrange
             var builder = new PrimaryKeyExpressionBuilder();
             using var ctx = new MyDbContext();
 
-            //Act 
+            //Act
             var buildKeyPredicteOpres = builder
                 .TryBuildForCompositeKey<int, SameValueTypeComposedKeysEntity>(
                     ctx, compostiteKeyParts:
@@ -42,11 +42,11 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Impl.Test
         [TestMethod]
         public void ValidCompositRefTypeKeys_TryBuildForCompositeKey_SuccessfulyBuilt()
         {
-            //Arrange 
+            //Arrange
             var builder = new PrimaryKeyExpressionBuilder();
             using var ctx = new MyDbContext();
 
-            //Act 
+            //Act
             var buildKeyPredicteOpres = builder
                 .TryBuildForCompositeKey<string, SameRefTypeKeysComposedEntity>(
                 ctx, compostiteKeyParts:

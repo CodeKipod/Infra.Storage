@@ -26,7 +26,7 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.SingleKey
             bool trackChangesOnRetrievedEntities,
             IDbContextProvider dbContextProvider = null,
             IPrimaryKeyExpressionBuilder primaryKeyExpressionBuilder = null,
-            IKeyEntityValidatorFor<TKey,TEntity> keyEntityValidator = null)
+            IKeyEntityValidatorFor<TKey, TEntity> keyEntityValidator = null)
             : base(new DbContextSafeUsageVisitor(dbContextProvider),
                  keyEntityValidator,
                  primaryKeyExpressionBuilder)

@@ -13,7 +13,7 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.SingleKey.Helper
                    disposeAfterUsage: false)
         {
             _lazyDbContextProvider = new Lazy<DbContext>(
-                _dbContextFactory.Create, 
+                _dbContextFactory.Create,
                 isThreadSafe: true);
         }
 

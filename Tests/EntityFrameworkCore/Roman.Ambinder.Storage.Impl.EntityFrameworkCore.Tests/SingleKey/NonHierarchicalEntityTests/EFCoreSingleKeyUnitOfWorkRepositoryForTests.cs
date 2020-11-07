@@ -44,7 +44,6 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.SingleKey.NonHie
             Assert.AreEqual(getOpRes.Value, person);
         }
 
-
         [TestMethod]
         public async Task ExistingPerson_Update_Updated()
         {

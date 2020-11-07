@@ -6,7 +6,6 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.CompositeKey.Non
     [TestClass]
     public class EFCoreSingleKeyRepositoryPagingTests
     {
-
         [TestMethod]
         public async Task GetMultipleWithPaging_SingleItemPerPage_ExpectedNumberOfPagesWithResultsReturned()
         {
@@ -49,6 +48,5 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.CompositeKey.Non
                 Assert.AreEqual(getOpRes.Value.TotalNumberOfItems, numberOfPeople);
             }
         }
-
     }
 }

@@ -12,7 +12,7 @@ namespace Roman.Ambinder.Storage.Common.Interfaces.Common
       where TEntity : class, new()
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="key"></param>
         /// <param name="cancellation"></param>
@@ -23,7 +23,7 @@ namespace Roman.Ambinder.Storage.Common.Interfaces.Common
             params Expression<Func<TEntity, object>>[] toBeIncluded);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="filter"></param>
         /// <param name="cancellationToken"></param>
@@ -35,7 +35,5 @@ namespace Roman.Ambinder.Storage.Common.Interfaces.Common
             CancellationToken cancellationToken = default,
             PagingParams pagingParams = null,
             params Expression<Func<TEntity, object>>[] toBeIncluded);
-
- 
     }
 }

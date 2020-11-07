@@ -47,7 +47,6 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.CompositeKey.Non
             Assert.AreEqual(getOpRes.Value, person);
         }
 
-
         [TestMethod]
         public async Task ExistingPerson_Update_Updated()
         {

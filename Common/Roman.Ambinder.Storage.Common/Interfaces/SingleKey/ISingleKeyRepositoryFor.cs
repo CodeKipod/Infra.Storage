@@ -6,6 +6,5 @@ namespace Roman.Ambinder.Storage.Common.Interfaces.SingleKey
        IRepositoryFor<TKey, TEntity>
         where TEntity : class, new()
     {
-
     }
 }

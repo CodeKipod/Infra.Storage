@@ -40,8 +40,8 @@ namespace Roman.Ambinder.Storage.Impl.Dapper
 
         public Task<OperationResultOf<IReadOnlyCollection<TEntity>>> TryGetMultipleAsync(
             Expression<Func<TEntity, bool>> filter,
-            Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null, 
-            CancellationToken cancellationToken = default, 
+            Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
+            CancellationToken cancellationToken = default,
             params Expression<Func<TEntity, object>>[] toBeIncluded)
         {
             throw new NotImplementedException();
@@ -65,8 +65,8 @@ namespace Roman.Ambinder.Storage.Impl.Dapper
             throw new NotImplementedException();
         }
 
-        public Task<OperationResultOf<TEntity>> TryUpdateAsync(TKey key, 
-            Action<TEntity> updateAction, 
+        public Task<OperationResultOf<TEntity>> TryUpdateAsync(TKey key,
+            Action<TEntity> updateAction,
             CancellationToken cancellationToken = default)
         {
             throw new NotImplementedException();

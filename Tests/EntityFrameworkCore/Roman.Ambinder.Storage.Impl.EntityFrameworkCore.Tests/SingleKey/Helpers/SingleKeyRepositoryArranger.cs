@@ -29,7 +29,7 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.SingleKey.Helper
         public static async Task<SingleKeyUnitOfWorkRespositry> TryGetUnitOfWorkRepositoryAsync()
         {
             var dbContextProvider = new SingleInstancePeopleDbContextProvider();
-          
+
             var repository = new SingleKeyUnitOfWorkRespositry(
                 dbContextProvider);
 

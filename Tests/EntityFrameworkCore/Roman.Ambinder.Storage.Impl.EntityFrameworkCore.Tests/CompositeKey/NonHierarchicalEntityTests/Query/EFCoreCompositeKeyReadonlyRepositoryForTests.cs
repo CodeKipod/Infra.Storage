@@ -54,7 +54,7 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.CompositeKey.Non
             //Assert
             Assert.IsTrue(getOpRes, getOpRes.ErrorMessage);
             Assert.AreEqual(getOpRes.Value.TotalNumberOfItems, numberOfPeople);
-        }    
+        }
 
         [TestMethod]
         public async Task MultpliplePeopleMatchingFilter_GetMultipleByFilterWithOrderBy_AllMatchingFilterResultsReturnedOrdered()
@@ -75,7 +75,6 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.CompositeKey.Non
                 Assert.IsTrue(addOpRes, addOpRes.ErrorMessage);
             }
 
-
             //Act
             var getOpRes = await repository.TryGetMultipleAsync(p => p.Age >= minimalAge,
                 orderBy: people => people.OrderBy(p => p.Age))
@@ -86,6 +85,5 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.CompositeKey.Non
             Assert.AreEqual(numberOfPeople, getOpRes.Value.TotalNumberOfItems);
             Assert.IsTrue(localRepo.OrderBy(p => p.Age).SequenceEqual(getOpRes.Value.Items));
         }
-
     }
 }

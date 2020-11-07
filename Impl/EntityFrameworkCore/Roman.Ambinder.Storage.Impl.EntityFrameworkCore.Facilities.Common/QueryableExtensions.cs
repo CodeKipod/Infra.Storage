@@ -45,6 +45,8 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Common
             else
             {
                 var itemsToSkip = (pagingParams.CurrentPage - 1) * pagingParams.ItemsPerPage;
+
+                // DbContext is not thread safe - Possible race condition...
                 //var countTask = query.CountAsync(cancellationToken);
                 //var getPagedResultTask = query.Skip(itemsToSkip)
                 //      .Take(pagingParams.ItemsPerPage)

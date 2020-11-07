@@ -3,7 +3,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Roman.Ambinder.Storage.Common.Interfaces.Common.UnitOfWork
+namespace Roman.Ambinder.Storage.Common.Interfaces.Common
 {
     public interface IUnitOfWorkRepositoryFor<TKey, TEntity> : IDisposable
         where TEntity : class, new()

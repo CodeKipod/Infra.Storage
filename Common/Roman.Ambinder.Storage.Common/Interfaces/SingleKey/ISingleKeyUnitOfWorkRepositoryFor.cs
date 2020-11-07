@@ -1,6 +1,6 @@
-﻿using Roman.Ambinder.Storage.Common.Interfaces.Common.UnitOfWork;
+﻿using Roman.Ambinder.Storage.Common.Interfaces.Common;
 
-namespace Roman.Ambinder.Storage.Common.Interfaces.UnitOfWork
+namespace Roman.Ambinder.Storage.Common.Interfaces
 {
     public interface ISingleKeyUnitOfWorkRepositoryFor<TKey, TEntity> :
         IUnitOfWorkRepositoryFor<TKey, TEntity>

@@ -39,6 +39,5 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Impl
         }
 
         public bool DisposeAfterUsage { get; }
-
     }
 }

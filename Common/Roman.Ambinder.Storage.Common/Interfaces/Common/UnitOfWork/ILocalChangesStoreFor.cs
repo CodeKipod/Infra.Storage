@@ -1,13 +1,12 @@
 ﻿using Roman.Ambinder.DataTypes.OperationResults;
-using Roman.Ambinder.Storage.Common.Interfaces.SingleKey.RespositoryOperations;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Roman.Ambinder.Storage.Common.Interfaces.UnitOfWork
+namespace Roman.Ambinder.Storage.Common.Interfaces.Common.UnitOfWork
 {
-    public interface ISingleKeyLocalChangesStoreFor<TKey, TEntity> :
-        ISingleKeyRepositoryGetOperationsFor<TKey, TEntity>
+    public interface ILocalChangesStoreFor<TKey, TEntity> :
+        IRepositoryGetOperationsFor<TKey, TEntity>
         where TEntity : class, new()
     {
         OperationResult TryAdd(TEntity newEntity);

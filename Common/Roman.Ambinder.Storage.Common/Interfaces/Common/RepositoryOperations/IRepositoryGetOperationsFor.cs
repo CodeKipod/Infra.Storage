@@ -1,14 +1,14 @@
 ﻿using Roman.Ambinder.DataTypes.OperationResults;
+using Roman.Ambinder.Storage.Common.DataTypes;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Roman.Ambinder.Storage.Common.Interfaces.CompositeKey.RespositoryOperations
+namespace Roman.Ambinder.Storage.Common.Interfaces.Common
 {
-    public interface ICompositeKeyRepositoryGetOperationsFor<TKey, TEntity>
+    public interface IRepositoryGetOperationsFor<TKey, TEntity>
       where TEntity : class, new()
     {
         /// <summary>
@@ -18,7 +18,7 @@ namespace Roman.Ambinder.Storage.Common.Interfaces.CompositeKey.RespositoryOpera
         /// <param name="cancellation"></param>
         /// <param name="toBeIncluded"></param>
         /// <returns></returns>
-        Task<OperationResultOf<TEntity>> TryGetSingleAsync(object[] compositeKey,
+        Task<OperationResultOf<TEntity>> TryGetSingleAsync(TKey key,
             CancellationToken cancellation = default,
             params Expression<Func<TEntity, object>>[] toBeIncluded);
 
@@ -29,10 +29,13 @@ namespace Roman.Ambinder.Storage.Common.Interfaces.CompositeKey.RespositoryOpera
         /// <param name="cancellationToken"></param>
         /// <param name="toBeIncluded"></param>
         /// <returns></returns>
-        Task<OperationResultOf<IReadOnlyCollection<TEntity>>> TryGetMultipleAsync(
+        Task<OperationResultOf<PagedItemsResultOf<TEntity>>> TryGetMultipleAsync(
             Expression<Func<TEntity, bool>> filter,
             Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
             CancellationToken cancellationToken = default,
+            PagingParams pagingParams = null,
             params Expression<Func<TEntity, object>>[] toBeIncluded);
+
+ 
     }
 }

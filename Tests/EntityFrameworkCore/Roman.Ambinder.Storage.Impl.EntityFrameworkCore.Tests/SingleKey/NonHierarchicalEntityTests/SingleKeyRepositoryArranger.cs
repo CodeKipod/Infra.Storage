@@ -1,12 +1,11 @@
 ﻿using Roman.Ambinder.Storage.Impl.EntityFrameworkCore.SingleKey;
-using Roman.Ambinder.Storage.Impl.EntityFrameworkCore.SingleKey.UnitOfWork;
 using Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.SingleKey.Entities;
 using Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.SingleKey.Helpers;
 using System.Threading.Tasks;
 
 namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.SingleKey.NonHierarchicalEntityTests
 {
-    public static class Arranger
+    public static class SingleKeyRepositoryArranger
     {
         public static SingleKeyPerson CreatePerson(byte? ageOverride = null,
             string firstNamePostFix = null,
@@ -27,11 +26,11 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.SingleKey.NonHie
             return repository;
         }
 
-        public static async Task<EFCoreUnitOfWorkRepositoryFor<int, SingleKeyPerson>> TryGetUnitOfWorkRepositoryAsync()
+        public static async Task<EFCoreSingleKeyUnitOfWorkRepositoryFor<int, SingleKeyPerson>> TryGetUnitOfWorkRepositoryAsync()
         {
             var dbContextProvider = new SingleInstancePeopleDbContextProvider();
           
-            var repository = new EFCoreUnitOfWorkRepositoryFor<int, SingleKeyPerson>(
+            var repository = new EFCoreSingleKeyUnitOfWorkRepositoryFor<int, SingleKeyPerson>(
                 dbContextProvider);
 
             await dbContextProvider.TryMigrateAsync(recreate: true)

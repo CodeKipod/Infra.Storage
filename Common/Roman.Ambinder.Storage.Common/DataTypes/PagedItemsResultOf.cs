@@ -17,7 +17,7 @@ namespace Roman.Ambinder.Storage.Common.DataTypes
         { }
 
         public PagedItemsResultOf(IReadOnlyCollection<T> items)
-            : base(currentPage: -1, itemsPerPage: -1, totalNumberOfItems: -1)
+            : base(currentPage: 1, itemsPerPage: items.Count, totalNumberOfItems: items.Count)
         {
             Items = items;
         }

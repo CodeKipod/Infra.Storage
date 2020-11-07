@@ -14,8 +14,8 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.SingleKey.NonHie
         public async Task ExistingPerson_GetSingle_ReturnedExistingPerson()
         {
             //Arrange
-            var repository = await Arranger.TryGetRepositoryAsync().ConfigureAwait(false);
-            var person = Arranger.CreatePerson();
+            var repository = await SingleKeyRepositoryArranger.TryGetRepositoryAsync().ConfigureAwait(false);
+            var person = SingleKeyRepositoryArranger.CreatePerson();
             var addOpRes = await repository.TryAddAsync(person)
                 .ConfigureAwait(false);
             Assert.IsTrue(addOpRes, addOpRes.ErrorMessage);
@@ -35,12 +35,12 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.SingleKey.NonHie
             //Arrange
             const byte numberOfPeople = 10;
             const byte minimalAge = 10;
-            var repository = await Arranger.TryGetRepositoryAsync().ConfigureAwait(false);
+            var repository = await SingleKeyRepositoryArranger.TryGetRepositoryAsync().ConfigureAwait(false);
             for (var i = 0; i < numberOfPeople; i++)
             {
                 var postfix = (i + 1).ToString();
                 byte age = (byte)(i + minimalAge);
-                var person = Arranger.CreatePerson(age, postfix, postfix);
+                var person = SingleKeyRepositoryArranger.CreatePerson(age, postfix, postfix);
                 var addOpRes = await repository.TryAddAsync(person)
                     .ConfigureAwait(false);
                 Assert.IsTrue(addOpRes, addOpRes.ErrorMessage);
@@ -62,13 +62,13 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.SingleKey.NonHie
             //Arrange
             const byte numberOfPeople = 10;
             const byte minimalAge = 10;
-            var repository = await Arranger.TryGetRepositoryAsync().ConfigureAwait(false);
+            var repository = await SingleKeyRepositoryArranger.TryGetRepositoryAsync().ConfigureAwait(false);
             var localRepo = new List<SingleKeyPerson>(numberOfPeople);
             for (var i = 0; i < numberOfPeople; i++)
             {
                 var postfix = (i + 1).ToString();
                 byte age = (byte)(i + minimalAge);
-                var person = Arranger.CreatePerson(age, postfix, postfix);
+                var person = SingleKeyRepositoryArranger.CreatePerson(age, postfix, postfix);
                 localRepo.Add(person);
                 var addOpRes = await repository.TryAddAsync(person)
                     .ConfigureAwait(false);

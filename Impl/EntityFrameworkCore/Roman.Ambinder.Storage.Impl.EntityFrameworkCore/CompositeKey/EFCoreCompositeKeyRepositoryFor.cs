@@ -2,8 +2,6 @@
 using Roman.Ambinder.DataTypes.OperationResults;
 using Roman.Ambinder.Storage.Common.Interfaces;
 using Roman.Ambinder.Storage.Common.Interfaces.SingleKey;
-using Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Common;
-using Roman.Ambinder.Storage.Impl.EntityFrameworkCore.CompositeKey;
 using Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Common;
 using System;
 using System.Threading;
@@ -16,13 +14,13 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.CompositeKey
     /// </summary>
     /// <typeparam name="TEntity"></typeparam>
     /// <typeparam name="TKey"></typeparam>
-    public class EFCoreCompositeKeyRepositoryFor<TKey, TEntity> :
-        EFCoreCompositeKeyReadonlyRepositoryFor<TKey, TEntity>,
-        ICompositeKeyRepositoryFor<TKey, TEntity>
+    public class EFCoreCompositeKeyRepositoryFor<TEntity> :
+        EFCoreCompositeKeyReadonlyRepositoryFor<TEntity>,
+        ICompositeKeyRepositoryFor<TEntity>
         where TEntity : class, new()
     {
         public EFCoreCompositeKeyRepositoryFor(IDbContextProvider dbContextProvider,
-            IKeyEntityValidatorFor<TKey, TEntity> keyEntityValidator = null)
+            IKeyEntityValidatorFor<object[], TEntity> keyEntityValidator = null)
             : base(trackChangesOnRetrievedEntities: false,
                    dbContextProvider, keyEntityValidator: keyEntityValidator)
         { }

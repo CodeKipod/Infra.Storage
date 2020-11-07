@@ -1,5 +1,4 @@
 using System;
-using System.ComponentModel.DataAnnotations;
 
 namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.SingleKey.Entities
 {
@@ -34,6 +33,13 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.SingleKey.Entiti
         public override int GetHashCode()
         {
             return HashCode.Combine(Key1, Age, FirstName, LastName);
+        }
+
+        public void SetId(int id)
+        {
+            Key1 = id;
+            Key2 = id;
+            Key3 = id;
         }
 
         public int Key1 { get; private set; }

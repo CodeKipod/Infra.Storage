@@ -2,26 +2,24 @@
 using Roman.Ambinder.DataTypes.OperationResults;
 using Roman.Ambinder.Storage.Common.DataTypes;
 using Roman.Ambinder.Storage.Common.Interfaces;
-using Roman.Ambinder.Storage.Common.Interfaces.UnitOfWork;
-using Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Common;
+using Roman.Ambinder.Storage.Common.Interfaces.Common.UnitOfWork;
 using Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Common;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.SingleKey.UnitOfWork
+namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Common
 {
-    public class DbContextSingleKeyLocalStoreFor<TKey, TEntity> :
+    public class DbContextLocalStoreFor<TKey, TEntity> :
         BaseDbContextStorageFor<TKey, TEntity>,
-        ISingleKeyLocalChangesStoreFor<TKey, TEntity>
+        ILocalChangesStoreFor<TKey, TEntity>
          where TEntity : class, new()
     {
-        public DbContextSingleKeyLocalStoreFor(
+        public DbContextLocalStoreFor(
             IDbContextSafeUsageVisitor dbContextSafeUsageVisitor,
-            IKeyEntityValidatorFor<TKey, TEntity> keyEntityValidator = null)
+            IKeyEntityValidatorFor<TKey,TEntity> keyEntityValidator = null)
             : base(dbContextSafeUsageVisitor, keyEntityValidator)
         { }
 
@@ -88,7 +86,7 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.SingleKey.UnitOfWork
                         .ToPagedResultsArrayAsync(pagingParams, cancellationToken)
                         .ConfigureAwait(false);
 
-                var success = pagedResults != null && pagedResults.Items!=null&& pagedResults.Items.Count > 0;
+                var success = pagedResults != null && pagedResults.Items != null && pagedResults.Items.Count > 0;
 
                 if (success)
                     return pagedResults.AsSuccessfulOpRes();
@@ -149,7 +147,5 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.SingleKey.UnitOfWork
                 return ex.AsFailedOpRes();
             }
         }
-
-
     }
 }

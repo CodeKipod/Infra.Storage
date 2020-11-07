@@ -3,9 +3,9 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Roman.Ambinder.Storage.Common.Interfaces.RespositoryOperations
+namespace Roman.Ambinder.Storage.Common.Interfaces.Common
 {
-    public interface IRepositoryAddOperationsFor<TKey, TEntity>
+    public interface IRepositoryAddOperationsFor<TEntity>
         where TEntity : class, new()
     {
         Task<OperationResultOf<TEntity>> TryAddAsync(

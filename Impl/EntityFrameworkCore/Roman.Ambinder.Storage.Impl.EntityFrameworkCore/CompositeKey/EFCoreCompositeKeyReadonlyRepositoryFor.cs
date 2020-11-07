@@ -1,13 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Roman.Ambinder.DataTypes.OperationResults;
+using Roman.Ambinder.Storage.Common.DataTypes;
 using Roman.Ambinder.Storage.Common.Interfaces;
-using Roman.Ambinder.Storage.Common.Interfaces.CompositeKey.RespositoryOperations;
+using Roman.Ambinder.Storage.Common.Interfaces.Common;
 using Roman.Ambinder.Storage.EntityFrameworkCore.Facilities.Common;
 using Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Common;
 using Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Common;
 using Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Impl;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading;
@@ -15,9 +15,9 @@ using System.Threading.Tasks;
 
 namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.CompositeKey
 {
-    public class EFCoreCompositeKeyReadonlyRepositoryFor<TKey, TEntity> :
-        BaseDbContextStorageFor<TKey, TEntity>,
-       ICompositeKeyRepositoryGetOperationsFor<TKey, TEntity>
+    public class EFCoreCompositeKeyReadonlyRepositoryFor<TEntity> :
+        BaseDbContextStorageFor<object[], TEntity>,
+        IRepositoryGetOperationsFor<object[], TEntity>
        where TEntity : class, new()
     {
         private readonly bool _trackChangesOnRetrievedEntities;
@@ -26,7 +26,7 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.CompositeKey
             bool trackChangesOnRetrievedEntities,
             IDbContextProvider dbContextProvider = null,
             IPrimaryKeyExpressionBuilder primaryKeyExpressionBuilder = null,
-            IKeyEntityValidatorFor<TKey, TEntity> keyEntityValidator = null)
+            IKeyEntityValidatorFor<object[], TEntity> keyEntityValidator = null)
             : base(new DbContextSafeUsageVisitor(dbContextProvider),
                  keyEntityValidator,
                  primaryKeyExpressionBuilder)
@@ -77,10 +77,11 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.CompositeKey
         }
 
 
-        public Task<OperationResultOf<IReadOnlyCollection<TEntity>>> TryGetMultipleAsync(
+        public Task<OperationResultOf<PagedItemsResultOf<TEntity>>> TryGetMultipleAsync(
             Expression<Func<TEntity, bool>> filter,
             Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
             CancellationToken cancellationToken = default,
+            PagingParams pagingParams = null,
             params Expression<Func<TEntity, object>>[] toBeIncluded)
         {
             return DbContextSafeUsageVisitor.TryUseAsync(async dbSession =>
@@ -103,17 +104,18 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.CompositeKey
                 if (orderBy != null)
                     query = orderBy(query);
 
-                IReadOnlyCollection<TEntity> foundEntities =
-                    await query.ToArrayAsync(cancellationToken)
-                        .ConfigureAwait(false);
+                var pagedRes = await query.ToPagedResultsArrayAsync(pagingParams, cancellationToken)
+                     .ConfigureAwait(false);
 
-                var success = foundEntities != null && foundEntities.Count > 0;
+                var success = pagedRes != null && pagedRes.Items != null && pagedRes.Items.Count > 0;
 
                 if (success)
-                    return foundEntities.AsSuccessfulOpRes();
+                {
+                    return pagedRes.AsSuccessfulOpRes();
+                }
 
                 return "Failed to find any filter matching entities"
-                    .AsFailedOpResOf<IReadOnlyCollection<TEntity>>();
+                    .AsFailedOpResOf<PagedItemsResultOf<TEntity>>();
             });
         }
     }

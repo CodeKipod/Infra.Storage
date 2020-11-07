@@ -8,8 +8,6 @@ namespace Roman.Ambinder.Storage.Common.Interfaces
     {
         OperationResult Validate(TKey key);
 
-        OperationResult Validate(object[] compositeKey);
-
         OperationResult Validate(TValue entity);
     }
 

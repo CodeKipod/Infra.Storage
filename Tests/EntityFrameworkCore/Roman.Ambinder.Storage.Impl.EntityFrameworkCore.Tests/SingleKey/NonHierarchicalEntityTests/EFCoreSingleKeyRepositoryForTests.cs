@@ -10,8 +10,8 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.SingleKey.NonHie
         public async Task NonExistingPerson_Add_Added()
         {
             //Arrange
-            var repository = await Arranger.TryGetRepositoryAsync().ConfigureAwait(false);
-            var person = Arranger.CreatePerson();
+            var repository = await SingleKeyRepositoryArranger.TryGetRepositoryAsync().ConfigureAwait(false);
+            var person = SingleKeyRepositoryArranger.CreatePerson();
 
             //Act
             var opRes = await repository.TryAddAsync(person)
@@ -25,8 +25,8 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.SingleKey.NonHie
         public async Task ExistingPerson_Get_ReturnedExistingPerson()
         {
             //Arrange
-            var repository = await Arranger.TryGetRepositoryAsync().ConfigureAwait(false);
-            var person = Arranger.CreatePerson();
+            var repository = await SingleKeyRepositoryArranger.TryGetRepositoryAsync().ConfigureAwait(false);
+            var person = SingleKeyRepositoryArranger.CreatePerson();
             var addOpRes = await repository.TryAddAsync(person)
                 .ConfigureAwait(false);
             Assert.IsTrue(addOpRes, addOpRes.ErrorMessage);
@@ -46,8 +46,8 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.SingleKey.NonHie
         {
             //Arrange
             const string updatedValue = "Updated";
-            var repository = await Arranger.TryGetRepositoryAsync().ConfigureAwait(false);
-            var person = Arranger.CreatePerson();
+            var repository = await SingleKeyRepositoryArranger.TryGetRepositoryAsync().ConfigureAwait(false);
+            var person = SingleKeyRepositoryArranger.CreatePerson();
             var addOpRes = await repository.TryAddAsync(person)
                 .ConfigureAwait(false);
             var existingEntityId = addOpRes.Value.Id;
@@ -76,8 +76,8 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.SingleKey.NonHie
         public async Task ExistingPerson_Remove_Removed()
         {
             //Arrange
-            var repository = await Arranger.TryGetRepositoryAsync().ConfigureAwait(false);
-            var person = Arranger.CreatePerson();
+            var repository = await SingleKeyRepositoryArranger.TryGetRepositoryAsync().ConfigureAwait(false);
+            var person = SingleKeyRepositoryArranger.CreatePerson();
             var addOpRes = await repository.TryAddAsync(person)
                 .ConfigureAwait(false);
             var existingEntityId = addOpRes.Value.Id;

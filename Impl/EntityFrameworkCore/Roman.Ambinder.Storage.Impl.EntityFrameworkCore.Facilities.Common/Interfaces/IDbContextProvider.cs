@@ -1,13 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Roman.Ambinder.DataTypes.OperationResults;
-using System;
 using System.Threading.Tasks;
 
 namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Common
 {
     public interface IDbContextProvider
     {
-
         DbContext Get();
 
         bool DisposeAfterUsage { get; }

@@ -26,7 +26,6 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Common
             return query;
         }
 
-
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static async Task<PagedItemsResultOf<T>> ToPagedResultsArrayAsync<T>(
             this IQueryable<T> query,
@@ -54,7 +53,6 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Common
                 await Task.WhenAll(countTask, getPagedResultTask)
                     .ConfigureAwait(false);
 
-
                 var totalNumberOfItems = countTask.Result;
 
                 pagedResults = new PagedItemsResultOf<T>(
@@ -62,13 +60,10 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Common
                     pagingParams.ItemsPerPage,
                     totalNumberOfItems);
 
-
                 pagedResults.Items = getPagedResultTask.Result;
             }
 
             return pagedResults;
         }
     }
-
-
 }

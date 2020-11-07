@@ -15,7 +15,6 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Impl
 
         public DbContextSafeUsageVisitor(IDbContextProvider dbContextProvider)
         {
-
             _dbContextProvider = dbContextProvider
                 ?? throw new ArgumentNullException(nameof(dbContextProvider));
         }
@@ -43,7 +42,6 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Impl
             }
         }
 
-
         public OperationResult TryUse(Action<DbContext> usage)
         {
             try
@@ -68,7 +66,6 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Impl
         {
             try
             {
-
                 if (_dbContextProvider.DisposeAfterUsage)
                 {
                     using var dbContext = _dbContextProvider.Get();
@@ -96,7 +93,7 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Impl
             // Already disposed
             if (Interlocked.Exchange(ref _wasDisposed, 1) == 1)
                 return;
-           
+
             try
             {
                 var dbContext = _dbContextProvider.Get();

@@ -12,7 +12,8 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.CompositeKey.Hel
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            const string connectionString = "data source=.\\SQLEXPRESS;initial catalog=CompositeKeyPeople;integrated security=SSPI";
+            const string connectionString =
+                "data source=.\\SQLEXPRESS;initial catalog=CompositeKeyPeople;integrated security=SSPI";
             optionsBuilder.UseSqlServer(connectionString);
         }
 

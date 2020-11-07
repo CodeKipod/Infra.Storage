@@ -16,14 +16,14 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Common
 
         protected BaseDbContextStorageFor(
             IDbContextSafeUsageVisitor dbContextSafeUsageVisitor,
-            IKeyEntityValidatorFor<TKey, TEntity> keyEntityValidator = null,
+            IKeyEntityValidatorFor<TKey,TEntity> keyEntityValidator = null,
             IPrimaryKeyExpressionBuilder primaryKeyExpressionBuilder = null)
         {
             DbContextSafeUsageVisitor = dbContextSafeUsageVisitor ??
                 throw new ArgumentNullException(nameof(dbContextSafeUsageVisitor));
 
             KeyEntityValidator = keyEntityValidator ??
-                new VoidKeyEntityValidatorFor<TKey, TEntity>();
+                new VoidKeyEntityValidatorOf<TKey, TEntity>();
 
             PrimaryKeyExpressionBuilder = primaryKeyExpressionBuilder ??
                 new PrimaryKeyExpressionBuilder();

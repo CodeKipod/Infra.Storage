@@ -2,14 +2,12 @@
 using Roman.Ambinder.DataTypes.OperationResults;
 using Roman.Ambinder.Storage.Common.DataTypes;
 using Roman.Ambinder.Storage.Common.Interfaces;
-using Roman.Ambinder.Storage.Common.Interfaces.SingleKey;
-using Roman.Ambinder.Storage.Common.Interfaces.SingleKey.RespositoryOperations;
+using Roman.Ambinder.Storage.Common.Interfaces.Common;
 using Roman.Ambinder.Storage.EntityFrameworkCore.Facilities.Common;
 using Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Common;
 using Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Common;
 using Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Impl;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading;
@@ -19,7 +17,7 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.SingleKey
 {
     public class EFCoreSingleKeyReadonlyRepositoryFor<TKey, TEntity> :
         BaseDbContextStorageFor<TKey, TEntity>,
-       ISingleKeyRepositoryGetOperationsFor<TKey, TEntity>
+        IRepositoryGetOperationsFor<TKey, TEntity>
        where TEntity : class, new()
     {
         private readonly bool _trackChangesOnRetrievedEntities;
@@ -28,7 +26,7 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.SingleKey
             bool trackChangesOnRetrievedEntities,
             IDbContextProvider dbContextProvider = null,
             IPrimaryKeyExpressionBuilder primaryKeyExpressionBuilder = null,
-            IKeyEntityValidatorFor<TKey, TEntity> keyEntityValidator = null)
+            IKeyEntityValidatorFor<TKey,TEntity> keyEntityValidator = null)
             : base(new DbContextSafeUsageVisitor(dbContextProvider),
                  keyEntityValidator,
                  primaryKeyExpressionBuilder)
@@ -108,9 +106,7 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.SingleKey
                 var pagedRes = await query.ToPagedResultsArrayAsync(pagingParams, cancellationToken)
                      .ConfigureAwait(false);
 
-
                 var success = pagedRes != null && pagedRes.Items != null && pagedRes.Items.Count > 0;
-
 
                 if (success)
                 {

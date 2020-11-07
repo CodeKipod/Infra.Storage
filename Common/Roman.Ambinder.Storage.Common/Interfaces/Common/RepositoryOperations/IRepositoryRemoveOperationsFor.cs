@@ -2,10 +2,10 @@
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Roman.Ambinder.Storage.Common.Interfaces.SingleKey.RespositoryOperations
+namespace Roman.Ambinder.Storage.Common.Interfaces.Common
 {
 
-    public interface ISingleKeyRepositoryRemoveOperationsFor<TKey, TEntity>
+    public interface IRepositoryRemoveOperationsFor<TKey, TEntity>
       where TEntity : class, new()
     {
         Task<OperationResultOf<TEntity>> TryRemoveAsync(TKey key,

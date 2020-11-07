@@ -3,7 +3,6 @@ using Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Common;
 
 namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Impl
 {
-
     /// <summary>
     ///
     /// </summary>

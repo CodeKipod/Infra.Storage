@@ -1,5 +1,6 @@
 ﻿using Roman.Ambinder.DataTypes.OperationResults;
-using Roman.Ambinder.Storage.Common.Interfaces.UnitOfWork;
+using Roman.Ambinder.Storage.Common.Interfaces.Common.UnitOfWork;
+using Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Common;
 using Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Common;
 using Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Impl;
 using System;
@@ -8,13 +9,13 @@ using System.Threading.Tasks;
 
 namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.SingleKey.UnitOfWork
 {
-    public class EFCoreUnitOfWorkRepositoryFor<TKey, TEntity> :
-        IUnitOfWorkSingleKeyRepositoryFor<TKey, TEntity>
+    public abstract class BaseEFCoreUnitOfWorkRepositoryFor<TKey, TEntity> :
+        IUnitOfWorkRepositoryFor<TKey, TEntity>
         where TEntity : class, new()
     {
         protected readonly DbContextSafeUsageVisitor DbContextSafeUsageVisitor;
 
-        public EFCoreUnitOfWorkRepositoryFor(IDbContextProvider dbContextProvider)
+        protected BaseEFCoreUnitOfWorkRepositoryFor(IDbContextProvider dbContextProvider)
         {
             dbContextProvider = dbContextProvider
                 ?? throw new ArgumentNullException(nameof(dbContextProvider));
@@ -22,7 +23,7 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.SingleKey.UnitOfWork
             DbContextSafeUsageVisitor = new DbContextSafeUsageVisitor(dbContextProvider);
 
             LocalChangesReposiotry =
-                new DbContextSingleKeyLocalStoreFor<TKey, TEntity>(DbContextSafeUsageVisitor);
+                new DbContextLocalStoreFor<TKey, TEntity>(DbContextSafeUsageVisitor);
         }
 
         public Task<OperationResult> TryCommitChangesAsync(
@@ -41,6 +42,6 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.SingleKey.UnitOfWork
 
         public void Dispose() => DbContextSafeUsageVisitor.Dispose();
 
-        public ISingleKeyLocalChangesStoreFor<TKey, TEntity> LocalChangesReposiotry { get; }
+        public ILocalChangesStoreFor<TKey, TEntity> LocalChangesReposiotry { get; }
     }
 }

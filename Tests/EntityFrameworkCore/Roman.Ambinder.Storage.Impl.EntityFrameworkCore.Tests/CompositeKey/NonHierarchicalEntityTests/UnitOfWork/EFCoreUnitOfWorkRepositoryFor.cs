@@ -1,19 +1,19 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Roman.Ambinder.Storage.Impl.EntityFrameworkCore.SingleKey.UnitOfWork;
+using Roman.Ambinder.Storage.Impl.EntityFrameworkCore.CompositeKey;
 using Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.SingleKey.Entities;
 using System.Threading.Tasks;
 
 namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.CompositeKey.NonHierarchicalEntityTests
 {
     [TestClass]
-    public class EFCoreUnitOfWorkRepositoryFor
+    public class EFCoreUnitOfWorkRepositoryForTests
     {
         [TestMethod]
         public async Task NonExistingPerson_Add_Added()
         {
             //Arrange
-            var unitOfWork = await Arranger.TryGetUnitOfWorkRepositoryAsync().ConfigureAwait(false);
-            var person = Arranger.CreatePerson();
+            var unitOfWork = await CompsiteKeyRepositoryArranger.TryGetUnitOfWorkRepositoryAsync().ConfigureAwait(false);
+            var person = CompsiteKeyRepositoryArranger.CreatePerson();
 
             //Act
             var addOpRes = unitOfWork.LocalChangesReposiotry.TryAdd(person);
@@ -28,15 +28,18 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.CompositeKey.Non
         public async Task ExistingPerson_Get_ReturnedExistingPerson()
         {
             //Arrange
-            var unitOfWork = await Arranger.TryGetUnitOfWorkRepositoryAsync().ConfigureAwait(false);
-            var person = Arranger.CreatePerson();
+            var unitOfWork = await CompsiteKeyRepositoryArranger
+                .TryGetUnitOfWorkRepositoryAsync()
+                .ConfigureAwait(false);
+            var person = CompsiteKeyRepositoryArranger.CreatePerson();
             var addOpRes = unitOfWork.LocalChangesReposiotry.TryAdd(person);
             Assert.IsTrue(addOpRes, addOpRes.ErrorMessage);
             var commitOpRes = await unitOfWork.TryCommitChangesAsync().ConfigureAwait(false);
             Assert.IsTrue(commitOpRes, commitOpRes.ErrorMessage);
 
             //Act
-            var getOpRes = await unitOfWork.LocalChangesReposiotry.TryGetSingleAsync(person.Key1)
+            var getOpRes = await unitOfWork.LocalChangesReposiotry.TryGetSingleAsync(
+                new object[] { person.Key1, person.Key2, person.Key3 })
                 .ConfigureAwait(false);
 
             //Assert
@@ -50,9 +53,9 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.CompositeKey.Non
         {
             //Arrange
             const string updatedValue = "Updated";
-            var unitOfWork = await Arranger.TryGetUnitOfWorkRepositoryAsync().ConfigureAwait(false);
+            var unitOfWork = await CompsiteKeyRepositoryArranger.TryGetUnitOfWorkRepositoryAsync().ConfigureAwait(false);
             var person = await CreateAndCommitPersonAsync(unitOfWork).ConfigureAwait(false);
-            var existingEntityId = person.Key1;
+            var existingEntityId = new object[] { person.Key1, person.Key2, person.Key3 };
 
             //Act
             var updateOpRes = await unitOfWork.LocalChangesReposiotry.TryUpdateAsync(existingEntityId,
@@ -74,9 +77,9 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.CompositeKey.Non
         public async Task ExistingPerson_Remove_Removed()
         {
             //Arrange
-            var unitOfWork = await Arranger.TryGetUnitOfWorkRepositoryAsync().ConfigureAwait(false);
+            var unitOfWork = await CompsiteKeyRepositoryArranger.TryGetUnitOfWorkRepositoryAsync().ConfigureAwait(false);
             var person = await CreateAndCommitPersonAsync(unitOfWork).ConfigureAwait(false);
-            var existingEntityId = person.Key1;
+            var existingEntityId = new object[] { person.Key1, person.Key2, person.Key3 };
 
             //Act
             var removeOpRes = await unitOfWork.LocalChangesReposiotry.TryRemoveAsync(existingEntityId)
@@ -92,9 +95,9 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.CompositeKey.Non
         }
 
         private static async Task<CompsiteKeyPerson> CreateAndCommitPersonAsync(
-            EFCoreUnitOfWorkRepositoryFor<int, CompsiteKeyPerson> unitOfWork)
+            EFCoreCompositeKeyUnitOfWorkRepositoryFor<CompsiteKeyPerson> unitOfWork)
         {
-            var person = Arranger.CreatePerson();
+            var person = CompsiteKeyRepositoryArranger.CreatePerson();
             var addOpRes = unitOfWork.LocalChangesReposiotry.TryAdd(person);
             Assert.IsTrue(addOpRes, addOpRes.ErrorMessage);
             var commitOpRes = await unitOfWork.TryCommitChangesAsync().ConfigureAwait(false);

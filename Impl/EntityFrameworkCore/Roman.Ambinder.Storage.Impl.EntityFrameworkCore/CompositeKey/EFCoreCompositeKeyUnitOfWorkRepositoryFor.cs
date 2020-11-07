@@ -1,5 +1,5 @@
-﻿using Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Common;
-using Roman.Ambinder.Storage.Impl.EntityFrameworkCore.SingleKey.UnitOfWork;
+﻿using Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Common;
+using Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Common;
 
 namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.CompositeKey
 {

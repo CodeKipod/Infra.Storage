@@ -1,13 +1,12 @@
 ﻿using Roman.Ambinder.DataTypes.OperationResults;
 using Roman.Ambinder.Storage.Common.Interfaces.Common.UnitOfWork;
-using Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Common;
 using Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Common;
 using Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Impl;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.SingleKey.UnitOfWork
+namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Common
 {
     public abstract class BaseEFCoreUnitOfWorkRepositoryFor<TKey, TEntity> :
         IUnitOfWorkRepositoryFor<TKey, TEntity>

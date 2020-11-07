@@ -1,8 +1,9 @@
-﻿using Roman.Ambinder.Storage.Impl.EntityFrameworkCore.CompositeKey;
-using Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.CompositeKey.Helpers;
+﻿using Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.CompositeKey.Helpers;
 using Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.SingleKey.Entities;
 using System.Threading;
 using System.Threading.Tasks;
+using CompositeKeyUnitOfWorkRepository = Roman.Ambinder.Storage.Impl.EntityFrameworkCore.CompositeKey.EFCoreCompositeKeyUnitOfWorkRepositoryFor<Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.SingleKey.Entities.CompsiteKeyPerson>;
+using CompositeKeyRepository = Roman.Ambinder.Storage.Impl.EntityFrameworkCore.CompositeKey.EFCoreCompositeKeyRepositoryFor<Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.SingleKey.Entities.CompsiteKeyPerson>;
 
 namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.CompositeKey.NonHierarchicalEntityTests
 {
@@ -23,21 +24,24 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.CompositeKey.Non
             return person;
         }
 
-        public static async Task<EFCoreCompositeKeyRepositoryFor<CompsiteKeyPerson>> TryGetRepositoryAsync()
+        public static async Task<CompositeKeyRepository> TryGetRepositoryAsync()
         {
-            var dbContextProvider = new PreCallPeopleDbContextProvider();
-            var repository = new EFCoreCompositeKeyRepositoryFor<CompsiteKeyPerson>(
+            var dbContextProvider = new CompositeKeyPreCallPeopleDbContextProvider();
+           
+            var repository = new CompositeKeyRepository(
                 dbContextProvider);
+           
             await dbContextProvider.TryMigrateAsync(recreate: true)
                 .ConfigureAwait(false);
+          
             return repository;
         }
 
-        public static async Task<EFCoreCompositeKeyUnitOfWorkRepositoryFor<CompsiteKeyPerson>> TryGetUnitOfWorkRepositoryAsync()
+        public static async Task<CompositeKeyUnitOfWorkRepository> TryGetUnitOfWorkRepositoryAsync()
         {
-            var dbContextProvider = new SingleInstancePeopleDbContextProvider();
+            var dbContextProvider = new CompositeKeySingleInstancePeopleDbContextProvider();
 
-            var repository = new EFCoreCompositeKeyUnitOfWorkRepositoryFor<CompsiteKeyPerson>(
+            var repository = new CompositeKeyUnitOfWorkRepository(
                 dbContextProvider);
 
             await dbContextProvider.TryMigrateAsync(recreate: true)

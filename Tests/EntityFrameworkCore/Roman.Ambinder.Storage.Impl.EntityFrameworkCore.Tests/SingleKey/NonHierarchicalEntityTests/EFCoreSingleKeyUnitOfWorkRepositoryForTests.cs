@@ -1,11 +1,12 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Roman.Ambinder.Storage.Impl.EntityFrameworkCore.SingleKey.UnitOfWork;
+using Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.SingleKey.Helpers;
 using System.Threading.Tasks;
 
 namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.SingleKey.NonHierarchicalEntityTests
 {
     [TestClass]
-    public class EFCoreUnitOfWorkRepositoryFor
+    public class EFCoreSingleKeyUnitOfWorkRepositoryForTests
     {
         [TestMethod]
         public async Task NonExistingPerson_Add_Added()

@@ -34,7 +34,6 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.CompositeKey.Non
             var existingEntityId = new object[] { addOpRes.Value.Key1, addOpRes.Value.Key2, addOpRes.Value.Key3 };
 
 
-
             //Act
             var getOpRes = await repository.TryGetSingleAsync(existingEntityId)
                 .ConfigureAwait(false);

@@ -1,9 +1,9 @@
-﻿using Roman.Ambinder.Storage.Impl.EntityFrameworkCore.SingleKey;
-using Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.SingleKey.Entities;
-using Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.SingleKey.Helpers;
+﻿using Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.SingleKey.Entities;
 using System.Threading.Tasks;
+using SingleKeyRepository = Roman.Ambinder.Storage.Impl.EntityFrameworkCore.SingleKey.EFCoreSingleKeyRepositoryFor<int, Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.SingleKey.Entities.SingleKeyPerson>;
+using SingleKeyUnitOfWorkRespositry = Roman.Ambinder.Storage.Impl.EntityFrameworkCore.SingleKey.EFCoreSingleKeyUnitOfWorkRepositoryFor<int, Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.SingleKey.Entities.SingleKeyPerson>;
 
-namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.SingleKey.NonHierarchicalEntityTests
+namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.SingleKey.Helpers
 {
     public static class SingleKeyRepositoryArranger
     {
@@ -16,21 +16,21 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.SingleKey.NonHie
                 lastName: lastNamePostFix != null ? $"Ambinder{lastNamePostFix}" : "Ambinder");
         }
 
-        public static async Task<EFCoreSingleKeyRepositoryFor<int, SingleKeyPerson>> TryGetRepositoryAsync()
+        public static async Task<SingleKeyRepository> TryGetRepositoryAsync()
         {
             var dbContextProvider = new PreCallPeopleDbContextProvider();
-            var repository = new EFCoreSingleKeyRepositoryFor<int, SingleKeyPerson>(
+            var repository = new SingleKeyRepository(
                 dbContextProvider);
             await dbContextProvider.TryMigrateAsync(recreate: true)
                 .ConfigureAwait(false);
             return repository;
         }
 
-        public static async Task<EFCoreSingleKeyUnitOfWorkRepositoryFor<int, SingleKeyPerson>> TryGetUnitOfWorkRepositoryAsync()
+        public static async Task<SingleKeyUnitOfWorkRespositry> TryGetUnitOfWorkRepositoryAsync()
         {
             var dbContextProvider = new SingleInstancePeopleDbContextProvider();
           
-            var repository = new EFCoreSingleKeyUnitOfWorkRepositoryFor<int, SingleKeyPerson>(
+            var repository = new SingleKeyUnitOfWorkRespositry(
                 dbContextProvider);
 
             await dbContextProvider.TryMigrateAsync(recreate: true)

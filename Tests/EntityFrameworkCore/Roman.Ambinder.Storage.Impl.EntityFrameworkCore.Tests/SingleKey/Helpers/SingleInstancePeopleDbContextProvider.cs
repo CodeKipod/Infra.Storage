@@ -12,7 +12,9 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.SingleKey.Helper
              : base(new CallbackDbContextFactory(() => new PeopleDbContext()),
                    disposeAfterUsage: false)
         {
-            _lazyDbContextProvider = new Lazy<DbContext>(_dbContextFactory.Create, isThreadSafe: true);
+            _lazyDbContextProvider = new Lazy<DbContext>(
+                _dbContextFactory.Create, 
+                isThreadSafe: true);
         }
 
         public override DbContext Get() => _lazyDbContextProvider.Value;

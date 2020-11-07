@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.CompositeKey.NonHierarchicalEntityTests
 {
     [TestClass]
-    public class EFCoreUnitOfWorkRepositoryForTests
+    public class EFCoreCompositeKeyUnitOfWorkRepositoryForTests
     {
         [TestMethod]
         public async Task NonExistingPerson_Add_Added()

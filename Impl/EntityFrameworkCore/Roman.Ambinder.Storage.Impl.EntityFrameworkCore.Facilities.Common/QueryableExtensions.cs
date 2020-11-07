@@ -45,22 +45,24 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Common
             else
             {
                 var itemsToSkip = (pagingParams.CurrentPage - 1) * pagingParams.ItemsPerPage;
-                var countTask = query.CountAsync(cancellationToken);
-                var getPagedResultTask = query.Skip(itemsToSkip)
-                      .Take(pagingParams.ItemsPerPage)
-                      .ToArrayAsync(cancellationToken);
+                //var countTask = query.CountAsync(cancellationToken);
+                //var getPagedResultTask = query.Skip(itemsToSkip)
+                //      .Take(pagingParams.ItemsPerPage)
+                //      .ToArrayAsync(cancellationToken);
 
-                await Task.WhenAll(countTask, getPagedResultTask)
-                    .ConfigureAwait(false);
+                //await Task.WhenAll(countTask, getPagedResultTask)
+                //    .ConfigureAwait(false);
 
-                var totalNumberOfItems = countTask.Result;
+                var totalNumberOfItems = await query.CountAsync(cancellationToken); 
 
                 pagedResults = new PagedItemsResultOf<T>(
                     pagingParams.CurrentPage,
                     pagingParams.ItemsPerPage,
                     totalNumberOfItems);
 
-                pagedResults.Items = getPagedResultTask.Result;
+                pagedResults.Items = await query.Skip(itemsToSkip)
+                      .Take(pagingParams.ItemsPerPage)
+                      .ToArrayAsync(cancellationToken);
             }
 
             return pagedResults;

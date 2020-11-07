@@ -5,23 +5,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.SingleKey.NonHierarchicalEntityTests
+namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.CompositeKey.NonHierarchicalEntityTests
 {
     [TestClass]
-    public class EFCoreSingleKeyReadonlyRepositoryForTests
+    public class EFCoreCompositeKeyReadonlyRepositoryForTests
     {
         [TestMethod]
         public async Task ExistingPerson_GetSingle_ReturnedExistingPerson()
         {
             //Arrange
-            var repository = await SingleKeyRepositoryArranger.TryGetRepositoryAsync().ConfigureAwait(false);
-            var person = SingleKeyRepositoryArranger.CreatePerson();
+            var repository = await CompsiteKeyRepositoryArranger.TryGetRepositoryAsync().ConfigureAwait(false);
+            var person = CompsiteKeyRepositoryArranger.CreatePerson();
             var addOpRes = await repository.TryAddAsync(person)
                 .ConfigureAwait(false);
             Assert.IsTrue(addOpRes, addOpRes.ErrorMessage);
+            var existingEntityId = new object[] { addOpRes.Value.Key1, addOpRes.Value.Key2, addOpRes.Value.Key3 };
 
             //Act
-            var getOpRes = await repository.TryGetSingleAsync(addOpRes.Value.Id)
+            var getOpRes = await repository.TryGetSingleAsync(existingEntityId)
                 .ConfigureAwait(false);
 
             //Assert
@@ -35,12 +36,12 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.SingleKey.NonHie
             //Arrange
             const byte numberOfPeople = 10;
             const byte minimalAge = 10;
-            var repository = await SingleKeyRepositoryArranger.TryGetRepositoryAsync().ConfigureAwait(false);
+            var repository = await CompsiteKeyRepositoryArranger.TryGetRepositoryAsync().ConfigureAwait(false);
             for (var i = 0; i < numberOfPeople; i++)
             {
                 var postfix = (i + 1).ToString();
                 byte age = (byte)(i + minimalAge);
-                var person = SingleKeyRepositoryArranger.CreatePerson(age, postfix, postfix);
+                var person = CompsiteKeyRepositoryArranger.CreatePerson(age, postfix, postfix);
                 var addOpRes = await repository.TryAddAsync(person)
                     .ConfigureAwait(false);
                 Assert.IsTrue(addOpRes, addOpRes.ErrorMessage);
@@ -52,9 +53,8 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.SingleKey.NonHie
 
             //Assert
             Assert.IsTrue(getOpRes, getOpRes.ErrorMessage);
-            Assert.AreEqual(getOpRes.Value.Items.Count, numberOfPeople);
-        }
-
+            Assert.AreEqual(getOpRes.Value.TotalNumberOfItems, numberOfPeople);
+        }    
 
         [TestMethod]
         public async Task MultpliplePeopleMatchingFilter_GetMultipleByFilterWithOrderBy_AllMatchingFilterResultsReturnedOrdered()
@@ -62,13 +62,13 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.SingleKey.NonHie
             //Arrange
             const byte numberOfPeople = 10;
             const byte minimalAge = 10;
-            var repository = await SingleKeyRepositoryArranger.TryGetRepositoryAsync().ConfigureAwait(false);
-            var localRepo = new List<SingleKeyPerson>(numberOfPeople);
+            var repository = await CompsiteKeyRepositoryArranger.TryGetRepositoryAsync().ConfigureAwait(false);
+            var localRepo = new List<CompsiteKeyPerson>(numberOfPeople);
             for (var i = 0; i < numberOfPeople; i++)
             {
                 var postfix = (i + 1).ToString();
                 byte age = (byte)(i + minimalAge);
-                var person = SingleKeyRepositoryArranger.CreatePerson(age, postfix, postfix);
+                var person = CompsiteKeyRepositoryArranger.CreatePerson(age, postfix, postfix);
                 localRepo.Add(person);
                 var addOpRes = await repository.TryAddAsync(person)
                     .ConfigureAwait(false);
@@ -83,7 +83,7 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.SingleKey.NonHie
 
             //Assert
             Assert.IsTrue(getOpRes, getOpRes.ErrorMessage);
-            Assert.AreEqual(numberOfPeople, getOpRes.Value.Items.Count);
+            Assert.AreEqual(numberOfPeople, getOpRes.Value.TotalNumberOfItems);
             Assert.IsTrue(localRepo.OrderBy(p => p.Age).SequenceEqual(getOpRes.Value.Items));
         }
 

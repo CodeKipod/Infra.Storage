@@ -85,38 +85,38 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.CompositeKey
             params Expression<Func<TEntity, object>>[] toBeIncluded)
         {
             return DbContextSafeUsageVisitor.TryUseAsync(async dbSession =>
-            {
-                IQueryable<TEntity> query = null;
-                if (_trackChangesOnRetrievedEntities)
-                {
-                    dbSession.Set<TEntity>()
-                    .Where(filter)
-                    .AppendIncludeExpressions(toBeIncluded);
-                }
-                else
-                {
-                    query = dbSession.Set<TEntity>()
-                        .AsNoTracking()
-                        .Where(filter)
-                        .AppendIncludeExpressions(toBeIncluded);
-                }
+          {
+              IQueryable<TEntity> query = null;
+              if (_trackChangesOnRetrievedEntities)
+              {
+                  dbSession.Set<TEntity>()
+                  .Where(filter)
+                  .AppendIncludeExpressions(toBeIncluded);
+              }
+              else
+              {
+                  query = dbSession.Set<TEntity>()
+                      .AsNoTracking()
+                      .Where(filter)
+                      .AppendIncludeExpressions(toBeIncluded);
+              }
 
-                if (orderBy != null)
-                    query = orderBy(query);
+              if (orderBy != null)
+                  query = orderBy(query);
 
-                var pagedRes = await query.ToPagedResultsArrayAsync(pagingParams, cancellationToken)
-                     .ConfigureAwait(false);
+              var pagedRes = await query.ToPagedResultsArrayAsync(pagingParams, cancellationToken)
+                   .ConfigureAwait(false);
 
-                var success = pagedRes != null && pagedRes.Items != null && pagedRes.Items.Count > 0;
+              var success = pagedRes != null && pagedRes.Items != null && pagedRes.Items.Count > 0;
 
-                if (success)
-                {
-                    return pagedRes.AsSuccessfulOpRes();
-                }
+              if (success)
+              {
+                  return pagedRes.AsSuccessfulOpRes();
+              }
 
-                return "Failed to find any filter matching entities"
-                    .AsFailedOpResOf<PagedItemsResultOf<TEntity>>();
-            });
+              return "Failed to find any filter matching entities"
+                  .AsFailedOpResOf<PagedItemsResultOf<TEntity>>();
+          });
         }
     }
 }

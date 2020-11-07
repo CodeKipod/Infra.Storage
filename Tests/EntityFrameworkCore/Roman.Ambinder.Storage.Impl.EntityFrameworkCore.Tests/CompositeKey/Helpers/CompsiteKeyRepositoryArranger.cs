@@ -27,13 +27,13 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.CompositeKey.Non
         public static async Task<CompositeKeyRepository> TryGetRepositoryAsync()
         {
             var dbContextProvider = new CompositeKeyPreCallPeopleDbContextProvider();
-           
+
             var repository = new CompositeKeyRepository(
                 dbContextProvider);
-           
+
             await dbContextProvider.TryMigrateAsync(recreate: true)
                 .ConfigureAwait(false);
-          
+
             return repository;
         }
 

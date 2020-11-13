@@ -33,9 +33,23 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Roman.Ambinder.Storage.Impl
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dapper", "Dapper", "{682495C7-8D74-455B-B0CB-082D2B4B8571}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Roman.Ambinder.Storage.Impl.Dapper", "Impl\Dapper\Roman.Ambinder.Storage.Impl.Dapper\Roman.Ambinder.Storage.Impl.Dapper.csproj", "{2FCEE861-102A-4177-97AC-2ECA6EF9B446}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Roman.Ambinder.Storage.Impl.Dapper", "Impl\Dapper\Roman.Ambinder.Storage.Impl.Dapper\Roman.Ambinder.Storage.Impl.Dapper.csproj", "{2FCEE861-102A-4177-97AC-2ECA6EF9B446}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Impl.Test", "Tests\EntityFrameworkCore\Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Impl.Test\Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Impl.Test.csproj", "{223C540E-F893-4661-B7C6-3E303A1ED619}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Impl.Test", "Tests\EntityFrameworkCore\Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Impl.Test\Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Impl.Test.csproj", "{223C540E-F893-4661-B7C6-3E303A1ED619}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NHibernate", "NHibernate", "{33A64245-160A-4142-B257-905A6B79BE66}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Roman.Ambinder.Storage.Impl.NHibernate", "Impl\NHibernate\Roman.Ambinder.Storage.Impl.NHibernate\Roman.Ambinder.Storage.Impl.NHibernate.csproj", "{BD156728-4C5C-40F9-AD46-0BD608C81F6D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Facilities", "Facilities", "{66B32EFE-05CF-47D3-9571-2C05FE6C0F6D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Roman.Ambinder.Storage.Impl.NHibernate.Facilities.Common", "Impl\NHibernate\Facilities\Roman.Ambinder.Storage.Impl.NHibernate.Facilities.Common\Roman.Ambinder.Storage.Impl.NHibernate.Facilities.Common.csproj", "{6AE9C996-78CA-4FCC-AA24-F6C909E93BC4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Roman.Ambinder.Storage.Impl.NHibernate.Facilities.Impl", "Impl\NHibernate\Facilities\Roman.Ambinder.Storage.Impl.NHibernate.Facilities.Impl\Roman.Ambinder.Storage.Impl.NHibernate.Facilities.Impl.csproj", "{B9CD0251-8F06-4B50-9B6C-E87ADED54917}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Examples", "Examples", "{D4629EE9-0A66-4A5A-9C4B-0605493A4163}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Storage.Examples.AspCore", "Examples\Storage.Examples.AspCore\Storage.Examples.AspCore.csproj", "{BA7BEDD2-3385-4DD2-92FE-531700077040}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -75,6 +89,22 @@ Global
 		{223C540E-F893-4661-B7C6-3E303A1ED619}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{223C540E-F893-4661-B7C6-3E303A1ED619}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{223C540E-F893-4661-B7C6-3E303A1ED619}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD156728-4C5C-40F9-AD46-0BD608C81F6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD156728-4C5C-40F9-AD46-0BD608C81F6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD156728-4C5C-40F9-AD46-0BD608C81F6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD156728-4C5C-40F9-AD46-0BD608C81F6D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6AE9C996-78CA-4FCC-AA24-F6C909E93BC4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6AE9C996-78CA-4FCC-AA24-F6C909E93BC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6AE9C996-78CA-4FCC-AA24-F6C909E93BC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6AE9C996-78CA-4FCC-AA24-F6C909E93BC4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9CD0251-8F06-4B50-9B6C-E87ADED54917}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9CD0251-8F06-4B50-9B6C-E87ADED54917}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9CD0251-8F06-4B50-9B6C-E87ADED54917}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9CD0251-8F06-4B50-9B6C-E87ADED54917}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA7BEDD2-3385-4DD2-92FE-531700077040}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA7BEDD2-3385-4DD2-92FE-531700077040}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA7BEDD2-3385-4DD2-92FE-531700077040}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA7BEDD2-3385-4DD2-92FE-531700077040}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -94,6 +124,12 @@ Global
 		{682495C7-8D74-455B-B0CB-082D2B4B8571} = {1EFAA1AE-FBAE-4129-B967-740699B9E01D}
 		{2FCEE861-102A-4177-97AC-2ECA6EF9B446} = {682495C7-8D74-455B-B0CB-082D2B4B8571}
 		{223C540E-F893-4661-B7C6-3E303A1ED619} = {F0CD7CBE-A4EC-43DF-BB1D-15D07F2DCBF0}
+		{33A64245-160A-4142-B257-905A6B79BE66} = {1EFAA1AE-FBAE-4129-B967-740699B9E01D}
+		{BD156728-4C5C-40F9-AD46-0BD608C81F6D} = {33A64245-160A-4142-B257-905A6B79BE66}
+		{66B32EFE-05CF-47D3-9571-2C05FE6C0F6D} = {33A64245-160A-4142-B257-905A6B79BE66}
+		{6AE9C996-78CA-4FCC-AA24-F6C909E93BC4} = {66B32EFE-05CF-47D3-9571-2C05FE6C0F6D}
+		{B9CD0251-8F06-4B50-9B6C-E87ADED54917} = {66B32EFE-05CF-47D3-9571-2C05FE6C0F6D}
+		{BA7BEDD2-3385-4DD2-92FE-531700077040} = {D4629EE9-0A66-4A5A-9C4B-0605493A4163}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0C29162D-CA11-43A8-84EB-0922423F1731}

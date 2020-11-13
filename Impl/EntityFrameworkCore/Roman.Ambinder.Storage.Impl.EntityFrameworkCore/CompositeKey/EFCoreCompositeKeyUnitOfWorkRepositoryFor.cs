@@ -1,5 +1,7 @@
-﻿using Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Common;
+﻿using Microsoft.EntityFrameworkCore;
+using Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Common;
 using Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Common;
+using Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Impl;
 
 namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.CompositeKey
 {
@@ -10,6 +12,17 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.CompositeKey
         public EFCoreCompositeKeyUnitOfWorkRepositoryFor(
             IDbContextProvider dbContextProvider)
             : base(dbContextProvider)
+        { }
+    }
+
+    public class EFCoreCompositeKeyUnitOfWorkRepositoryFor<TEntity, TDbContext> :
+        BaseEFCoreUnitOfWorkRepositoryFor<object[], TEntity>
+         where TEntity : class, new()
+        where TDbContext : DbContext
+    {
+        public EFCoreCompositeKeyUnitOfWorkRepositoryFor(
+            TDbContext dbContext)
+            : base(new DependencyInjectionDbContextProviderOf<TDbContext>(dbContext))
         { }
     }
 }

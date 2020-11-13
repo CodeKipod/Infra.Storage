@@ -1,8 +1,10 @@
-﻿using Roman.Ambinder.Storage.Common.Interfaces;
+﻿using Microsoft.EntityFrameworkCore;
+using Roman.Ambinder.Storage.Common.Interfaces;
 using Roman.Ambinder.Storage.Common.Interfaces.SingleKey;
 using Roman.Ambinder.Storage.EntityFrameworkCore.Facilities.Common;
 using Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Common;
 using Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Common;
+using Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Impl;
 
 namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.SingleKey
 {
@@ -24,6 +26,18 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.SingleKey
                   saveAfterChange: true,
                   primaryKeyExpressionBuilder,
                   keyEntityValidator: keyEntityValidator)
+        { }
+    }
+
+    public class EFCoreSingleKeyRepositoryFor<TKey, TEntity, TDbContext> :
+      EFCoreSingleKeyRepositoryFor<TKey, TEntity>
+      where TEntity : class, new()
+      where TDbContext : DbContext
+    {
+        public EFCoreSingleKeyRepositoryFor(TDbContext dBContext)
+            : base(new DependencyInjectionDbContextProviderOf<TDbContext>(dBContext),
+                  primaryKeyExpressionBuilder: null,
+                  keyEntityValidator: null)
         { }
     }
 }

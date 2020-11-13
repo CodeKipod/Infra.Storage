@@ -1,24 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Roman.Ambinder.DataTypes.OperationResults;
-using System;
-using System.Linq.Expressions;
+using Roman.Ambinder.Storage.Common.Interfaces;
 
 namespace Roman.Ambinder.Storage.EntityFrameworkCore.Facilities.Common
 {
-    public interface IPrimaryKeyExpressionBuilder
+    public interface IPrimaryKeyExpressionBuilder : IPrimaryKeyExpressionBuilderFor<DbContext>
     {
-        OperationResultOf<Expression<Func<TEntity, bool>>> TryBuildForSingleKey<TKey, TEntity>(
-            DbContext dbContext,
-            in TKey key)
-           where TEntity : class, new();
-
-        //OperationResultOf<Expression<Func<TEntity, bool>>> TryBuildForCompositeKey<TKey, TEntity>(
-        //  DbContext dbContext,
-        //  in TKey [] compostiteKeyParts)
-        // where TEntity : class, new();
-
-        OperationResultOf<Expression<Func<TEntity, bool>>> TryBuildForMultitypeCompositeKey<TEntity>(DbContext dbContext,
-              object[] compositeKey)
-          where TEntity : class, new();
+     
     }
 }

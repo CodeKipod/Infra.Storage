@@ -8,19 +8,20 @@ using System.Threading.Tasks;
 
 namespace Roman.Ambinder.Storage.Impl.NHibernate
 {
+
     public class NHibernateRepositoryFor<TKey, TEntity> :
         NHibernateReadonlyRepositoryFor<TKey, TEntity>,
         IRepositoryFor<TKey, TEntity>
         where TEntity : class, new()
     {
-        private bool _saveAfterChange;
+        private readonly bool _saveAfterChange;
 
         public NHibernateRepositoryFor(
             IStoreSessionSafeUsageVisitor<ISession> storeSessionSafeUsageVisitor,
             IKeyEntityValidatorFor<TKey, TEntity> keyEntityValidator)
             : base(storeSessionSafeUsageVisitor, keyEntityValidator)
-        {
-        }
+        { }
+
         public Task<OperationResultOf<TEntity>> TryAddAsync(
                Action<TEntity> initAction = null,
                CancellationToken cancellationToken = default)

@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.2" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\Impl\EntityFrameworkCore\Roman.Ambinder.Storage.Impl.EntityFrameworkCore\Roman.Ambinder.Storage.Impl.EntityFrameworkCore.csproj" />
   </ItemGroup>
 

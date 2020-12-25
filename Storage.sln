@@ -31,6 +31,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EntityFrameworkCore", "Enti
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests", "Tests\EntityFrameworkCore\Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests\Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.csproj", "{7FAD38F1-2671-4AB1-9CAF-8F7E1AF91EFC}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Examples", "Examples", "{98B550EA-000D-46F6-866D-820A646287AB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Examples.EFCoreStoageUsage.CoreConsoleApp", "Examples.EFCoreStoageUsage.CoreConsoleApp\Examples.EFCoreStoageUsage.CoreConsoleApp.csproj", "{D2AF4741-EC9D-4679-9625-D9B14EA0EEF8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -61,6 +65,10 @@ Global
 		{7FAD38F1-2671-4AB1-9CAF-8F7E1AF91EFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7FAD38F1-2671-4AB1-9CAF-8F7E1AF91EFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7FAD38F1-2671-4AB1-9CAF-8F7E1AF91EFC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2AF4741-EC9D-4679-9625-D9B14EA0EEF8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2AF4741-EC9D-4679-9625-D9B14EA0EEF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2AF4741-EC9D-4679-9625-D9B14EA0EEF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2AF4741-EC9D-4679-9625-D9B14EA0EEF8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -77,6 +85,7 @@ Global
 		{57173111-D2BF-44DD-BD17-7BB3EBBFB42D} = {1EFAA1AE-FBAE-4129-B967-740699B9E01D}
 		{F0CD7CBE-A4EC-43DF-BB1D-15D07F2DCBF0} = {A47B09EE-8A47-4040-B6CD-F0C2A213688E}
 		{7FAD38F1-2671-4AB1-9CAF-8F7E1AF91EFC} = {F0CD7CBE-A4EC-43DF-BB1D-15D07F2DCBF0}
+		{D2AF4741-EC9D-4679-9625-D9B14EA0EEF8} = {98B550EA-000D-46F6-866D-820A646287AB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0C29162D-CA11-43A8-84EB-0922423F1731}

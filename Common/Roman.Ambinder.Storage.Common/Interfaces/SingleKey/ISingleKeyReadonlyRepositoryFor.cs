@@ -8,7 +8,7 @@ using Roman.Ambinder.DataTypes.OperationResults;
 
 namespace Roman.Ambinder.Storage.Common.Interfaces.SingleKey
 {
-    public interface ISingleKeyReadonlyRepositoryFor<TKey, TEntity>  
+    public interface ISingleKeyReadonlyRepositoryFor<in TKey, TEntity>  
         where TEntity : class, new()
     {
         /// <summary>
@@ -26,6 +26,7 @@ namespace Roman.Ambinder.Storage.Common.Interfaces.SingleKey
         /// 
         /// </summary>
         /// <param name="filter"></param>
+        /// <param name="orderBy"></param>
         /// <param name="cancellationToken"></param>
         /// <param name="toBeIncluded"></param>
         /// <returns></returns>

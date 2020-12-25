@@ -1,5 +1,6 @@
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.Entities
 {
@@ -31,12 +32,14 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.Entities
             return Equals((Person)obj);
         }
 
+        [SuppressMessage("ReSharper", "NonReadonlyMemberInGetHashCode")]
         public override int GetHashCode()
         {
             return HashCode.Combine(Id, Age, FirstName, LastName);
         }
 
         [Key]
+        // ReSharper disable once UnusedAutoPropertyAccessor.Local
         public int Id { get; private set; }
 
         public byte Age { get; set; }

@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Roman.Ambinder.DataTypes.OperationResults;
-using Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Common;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Common.Interfaces;
 
 namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Impl
 {
@@ -27,15 +27,13 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Impl
             {
                 if (_dbContextProvider.DisposeAfterUsage)
                 {
-                    using var dbContext = _dbContextProvider.Get();
+                    await using var dbContext = _dbContextProvider.Get();
                     return await usage(dbContext)
                         .ConfigureAwait(false);
                 }
-                else
-                {
-                    return await usage(_dbContextProvider.Get())
-                            .ConfigureAwait(false);
-                }
+
+                return await usage(_dbContextProvider.Get())
+                    .ConfigureAwait(false);
             }
             catch (Exception ex)
             {
@@ -71,15 +69,13 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Impl
 
                 if (_dbContextProvider.DisposeAfterUsage)
                 {
-                    using var dbContext = _dbContextProvider.Get();
+                    await using var dbContext = _dbContextProvider.Get();
                     return await usage(dbContext)
                         .ConfigureAwait(false);
                 }
-                else
-                {
-                    return await usage(_dbContextProvider.Get())
-                            .ConfigureAwait(false);
-                }
+
+                return await usage(_dbContextProvider.Get())
+                    .ConfigureAwait(false);
             }
             catch (Exception ex)
             {
@@ -102,7 +98,10 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Impl
                 var dbContext = _dbContextProvider.Get();
                 dbContext?.Dispose();
             }
-            catch { }
+            catch
+            {
+                // ignored
+            }
         }
     }
 }

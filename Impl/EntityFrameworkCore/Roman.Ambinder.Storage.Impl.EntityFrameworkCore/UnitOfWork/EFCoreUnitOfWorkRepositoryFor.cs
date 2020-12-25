@@ -1,11 +1,11 @@
 ﻿using Roman.Ambinder.DataTypes.OperationResults;
-using Roman.Ambinder.Storage.Common.Interfaces.LocalChangesStore;
-using Roman.Ambinder.Storage.Common.Interfaces.UnitOfWork;
-using Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Common;
 using Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Impl;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using Roman.Ambinder.Storage.Common.Interfaces.SingleKey.LocalChangesStore;
+using Roman.Ambinder.Storage.Common.Interfaces.SingleKey.UnitOfWork;
+using Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Common.Interfaces;
 
 namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.UnitOfWork
 {
@@ -22,7 +22,7 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.UnitOfWork
 
             DbContextSafeUsageVisitor = new DbContextSafeUsageVisitor(dbContextProvider);
 
-            LocalChangesReposiotry =
+            LocalChangesRepository =
                 new DbContextSingleKeyLocalStoreFor<TKey, TEntity>(DbContextSafeUsageVisitor);
         }
 
@@ -42,6 +42,6 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.UnitOfWork
 
         public void Dispose() => DbContextSafeUsageVisitor.Dispose();
 
-        public ISingleKeyLocalChangesStoreFor<TKey, TEntity> LocalChangesReposiotry { get; }
+        public ISingleKeyLocalChangesStoreFor<TKey, TEntity> LocalChangesRepository { get; }
     }
 }

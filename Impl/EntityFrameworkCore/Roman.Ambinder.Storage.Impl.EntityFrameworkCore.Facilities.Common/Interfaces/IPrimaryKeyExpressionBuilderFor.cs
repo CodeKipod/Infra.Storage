@@ -1,8 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
+﻿using System;
 using System.Linq.Expressions;
+using Microsoft.EntityFrameworkCore;
 
-namespace Roman.Ambinder.Storage.EntityFrameworkCore.Facilities.Common
+namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Common.Interfaces
 {
     public interface IPrimaryKeyExpressionBuilderFor<TKey, TEntity>
     {

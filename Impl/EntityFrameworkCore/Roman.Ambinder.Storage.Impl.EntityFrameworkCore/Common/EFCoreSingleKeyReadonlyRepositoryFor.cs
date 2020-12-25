@@ -2,7 +2,6 @@
 using Roman.Ambinder.DataTypes.OperationResults;
 using Roman.Ambinder.Storage.Common.Interfaces;
 using Roman.Ambinder.Storage.Common.Interfaces.SingleKey;
-using Roman.Ambinder.Storage.EntityFrameworkCore.Facilities.Common;
 using Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Common;
 using Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Impl;
 using System;
@@ -11,6 +10,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading;
 using System.Threading.Tasks;
+using Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Common.Interfaces;
 
 namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Common
 {
@@ -79,12 +79,12 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Common
         {
             return DbContextSafeUsageVisitor.TryUseAsync(async dbSession =>
             {
-                IQueryable<TEntity> query = null;
+                IQueryable<TEntity> query;
                 if (_trackChangesOnRetrievedEntities)
                 {
-                    dbSession.Set<TEntity>()
-                    .Where(filter)
-                    .AppendIncludeExpressions(toBeIncluded);
+                    query = dbSession.Set<TEntity>()
+                        .Where(filter)
+                        .AppendIncludeExpressions(toBeIncluded);
                 }
                 else
                 {

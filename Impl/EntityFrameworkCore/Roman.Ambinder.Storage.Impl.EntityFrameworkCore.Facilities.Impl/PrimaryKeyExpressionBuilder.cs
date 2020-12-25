@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Roman.Ambinder.Storage.EntityFrameworkCore.Facilities.Common;
 using System;
 using System.Linq;
 using System.Linq.Expressions;
+using Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Common.Interfaces;
 
 namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Impl
 {

@@ -11,7 +11,7 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.NonHierarchicalE
             string firstNamePostFix = null,
             string lastNamePostFix = null)
         {
-            return new Person(age: ageOverride.HasValue ? ageOverride.Value : (byte)10,
+            return new Person(age: ageOverride ?? (byte)10,
                 firstName: firstNamePostFix != null ? $"Roman{firstNamePostFix}" : "Roman",
                 lastName: lastNamePostFix != null ? $"Ambinder{lastNamePostFix}" : "Ambinder");
         }

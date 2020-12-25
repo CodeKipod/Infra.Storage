@@ -1,9 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Roman.Ambinder.DataTypes.OperationResults;
-using System;
+﻿using System;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using Roman.Ambinder.DataTypes.OperationResults;
 
-namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Common
+namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Common.Interfaces
 {
     public interface IDbContextSafeUsageVisitor : IDisposable
     {

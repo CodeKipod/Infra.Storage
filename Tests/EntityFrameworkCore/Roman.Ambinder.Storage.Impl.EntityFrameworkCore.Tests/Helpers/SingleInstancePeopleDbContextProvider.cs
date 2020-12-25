@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Impl;
 using System;
+using Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Impl.DbContextLifeCycle;
+using Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Impl.DbContextLifeCycle.Providers;
 
 namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.Helpers
 {
@@ -12,7 +13,7 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.Helpers
              : base(new CallbackDbContextFactory(() => new PeopleDbContext()),
                    disposeAfterUsage: false)
         {
-            _lazyDbContextProvider = new Lazy<DbContext>(_dbContextFactory.Create, isThreadSafe: true);
+            _lazyDbContextProvider = new Lazy<DbContext>(DbContextFactory.Create, isThreadSafe: true);
         }
 
         public override DbContext Get() => _lazyDbContextProvider.Value;

@@ -1,12 +1,11 @@
-﻿using Roman.Ambinder.DataTypes.OperationResults;
-using Roman.Ambinder.Storage.Common.Interfaces.SingleKey;
-using System;
+﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
+using Roman.Ambinder.DataTypes.OperationResults;
 
-namespace Roman.Ambinder.Storage.Common.Interfaces.LocalChangesStore
+namespace Roman.Ambinder.Storage.Common.Interfaces.SingleKey.LocalChangesStore
 {
-    public interface ISingleKeyLocalChangesStoreFor<TKey, TEntity> :
+    public interface ISingleKeyLocalChangesStoreFor<in TKey, TEntity> :
         ISingleKeyReadonlyRepositoryFor<TKey, TEntity>
         where TEntity : class, new()
     {

@@ -5,7 +5,7 @@ using Roman.Ambinder.DataTypes.OperationResults;
 
 namespace Roman.Ambinder.Storage.Common.Interfaces.SingleKey
 {
-    public interface ISingleKeyRepositoryFor<TKey, TEntity> :
+    public interface ISingleKeyRepositoryFor<in TKey, TEntity> :
         ISingleKeyReadonlyRepositoryFor<TKey, TEntity>
         where TEntity : class, new()
     {

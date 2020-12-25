@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+
+<package>
+	<metadata>
+		<id>Roman.Ambinder.Storage.Impl.EFCore</id>
+		<version>#{SemanticVersion}#</version>
+		<authors>Roman Ambinder</authors>
+		<owners>Roman Ambinder</owners>
+		<license type="expression">MIT</license>
+		<requireLicenseAcceptance>true</requireLicenseAcceptance>
+		<repository type="git" url="https://github.com/CodeKipod/Infra.Storage" />
+		<projectUrl>https://github.com/CodeKipod/Infra.Storage</projectUrl>
+		<description>Entity Framework Repositoy Implementation</description>
+		<copyright>Copyright (c) #{Year}#, Roman Ambinder</copyright>
+		<tags>Clean Code, DDD , GenericRepository</tags>
+		
+	</metadata>
+	<files>
+		<file src="lib\**\*.*" target="lib" />
+	</files>
+</package>

@@ -1,7 +1,9 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Threading.Tasks;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Roman.Ambinder.Storage.Common.Interfaces.SingleKey.UnitOfWork;
+using Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.Entities;
 
-namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.NonHierarchicalEntityTests
+namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.NonHierarchicalEntityTests.UnitOfWork
 {
     [TestClass]
     public class EFCoreUnitOfWorkRepositoryFor
@@ -14,7 +16,7 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.NonHierarchicalE
             var person = Arranger.CreatePerson();
 
             //Act
-            var addOpRes = unitOfWork.LocalChangesReposiotry.TryAdd(person);
+            var addOpRes = unitOfWork.LocalChangesRepository.TryAdd(person);
             var saveOpRes = await unitOfWork.TryCommitChangesAsync().ConfigureAwait(false);
 
             //Assert
@@ -28,13 +30,13 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.NonHierarchicalE
             //Arrange
             var unitOfWork = await Arranger.TryGetUnitOfWorkRepositoryAsync().ConfigureAwait(false);
             var person = Arranger.CreatePerson();
-            var addOpRes = unitOfWork.LocalChangesReposiotry.TryAdd(person);
+            var addOpRes = unitOfWork.LocalChangesRepository.TryAdd(person);
             Assert.IsTrue(addOpRes, addOpRes.ErrorMessage);
             var commitOpRes = await unitOfWork.TryCommitChangesAsync().ConfigureAwait(false);
             Assert.IsTrue(commitOpRes, commitOpRes.ErrorMessage);
 
             //Act
-            var getOpRes = await unitOfWork.LocalChangesReposiotry.TryGetSingleAsync(person.Id)
+            var getOpRes = await unitOfWork.LocalChangesRepository.TryGetSingleAsync(person.Id)
                 .ConfigureAwait(false);
 
             //Assert
@@ -53,7 +55,7 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.NonHierarchicalE
             var existingEntityId = person.Id;
 
             //Act
-            var updateOpRes = await unitOfWork.LocalChangesReposiotry.TryUpdateAsync(existingEntityId,
+            var updateOpRes = await unitOfWork.LocalChangesRepository.TryUpdateAsync(existingEntityId,
                 p =>
                 {
                     p.FirstName = updatedValue;
@@ -62,7 +64,7 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.NonHierarchicalE
 
             //Assert
             Assert.IsTrue(updateOpRes, updateOpRes.ErrorMessage);
-            var getOpRes = await unitOfWork.LocalChangesReposiotry.TryGetSingleAsync(existingEntityId)
+            var getOpRes = await unitOfWork.LocalChangesRepository.TryGetSingleAsync(existingEntityId)
                 .ConfigureAwait(false);
             Assert.AreEqual(getOpRes.Value.FirstName, updatedValue);
             Assert.AreEqual(getOpRes.Value.LastName, updatedValue);
@@ -77,22 +79,23 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.NonHierarchicalE
             var existingEntityId = person.Id;
 
             //Act
-            var removeOpRes = await unitOfWork.LocalChangesReposiotry.TryRemoveAsync(existingEntityId)
+            var removeOpRes = await unitOfWork.LocalChangesRepository.TryRemoveAsync(existingEntityId)
                 .ConfigureAwait(false);
             var commitOpRes = await unitOfWork.TryCommitChangesAsync().ConfigureAwait(false);
 
             //Assert
             Assert.IsTrue(commitOpRes, commitOpRes.ErrorMessage);
             Assert.IsTrue(removeOpRes, removeOpRes.ErrorMessage);
-            var getOpRes = await unitOfWork.LocalChangesReposiotry.TryGetSingleAsync(existingEntityId)
+            var getOpRes = await unitOfWork.LocalChangesRepository.TryGetSingleAsync(existingEntityId)
                 .ConfigureAwait(false);
             Assert.IsFalse(getOpRes);
         }
 
-        private static async Task<Entities.Person> CreateAndCommitPersonAsync(UnitOfWork.EFCoreUnitOfWorkRepositoryFor<int, Entities.Person> unitOfWork)
+        private static async Task<Person> CreateAndCommitPersonAsync(
+            IUnitOfWorkSingleKeyRepositoryFor<int, Person> unitOfWork)
         {
             var person = Arranger.CreatePerson();
-            var addOpRes = unitOfWork.LocalChangesReposiotry.TryAdd(person);
+            var addOpRes = unitOfWork.LocalChangesRepository.TryAdd(person);
             Assert.IsTrue(addOpRes, addOpRes.ErrorMessage);
             var commitOpRes = await unitOfWork.TryCommitChangesAsync().ConfigureAwait(false);
             Assert.IsTrue(commitOpRes, commitOpRes.ErrorMessage);

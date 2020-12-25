@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Common;
+using Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Common.Interfaces;
 
-namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Impl
+namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Impl.DbContextLifeCycle.Providers
 {
 
     /// <summary>
@@ -13,6 +13,6 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Impl
             : base(dbContextFactory, disposeAfterUsage: true)
         { }
 
-        public override DbContext Get() => _dbContextFactory.Create();
+        public override DbContext Get() => DbContextFactory.Create();
     }
 }

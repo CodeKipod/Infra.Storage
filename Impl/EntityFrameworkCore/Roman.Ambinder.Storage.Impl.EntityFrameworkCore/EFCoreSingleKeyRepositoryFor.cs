@@ -20,10 +20,12 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore
         ISingleKeyRepositoryFor<TKey, TEntity>
         where TEntity : class, new()
     {
-        public EFCoreSingleKeyRepositoryFor(IDbContextProvider dbContextProvider,
+        public EFCoreSingleKeyRepositoryFor(
+            IDbContextProvider dbContextProvider,
             IKeyEntityValidatorFor<TKey, TEntity> keyEntityValidator = null)
             : base(trackChangesOnRetrievedEntities: false, 
-                   dbContextProvider, keyEntityValidator: keyEntityValidator)
+                   dbContextProvider, 
+                   keyEntityValidator: keyEntityValidator)
         { }
 
         public Task<OperationResultOf<TEntity>> TryAddAsync(

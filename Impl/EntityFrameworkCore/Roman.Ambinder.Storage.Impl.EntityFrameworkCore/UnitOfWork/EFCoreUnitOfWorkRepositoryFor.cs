@@ -15,7 +15,8 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.UnitOfWork
     {
         protected readonly DbContextSafeUsageVisitor DbContextSafeUsageVisitor;
 
-        public EFCoreUnitOfWorkRepositoryFor(IDbContextProvider dbContextProvider)
+        public EFCoreUnitOfWorkRepositoryFor(
+            IDbContextProvider dbContextProvider)
         {
             dbContextProvider = dbContextProvider
                 ?? throw new ArgumentNullException(nameof(dbContextProvider));

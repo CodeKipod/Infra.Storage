@@ -23,7 +23,7 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Common
 
         public EFCoreSingleKeyReadonlyRepositoryFor(
             bool trackChangesOnRetrievedEntities,
-            IDbContextProvider dbContextProvider = null,
+            IDbContextProvider dbContextProvider,
             IPrimaryKeyExpressionBuilderFor<TKey, TEntity> primaryKeyExpressionBuilder = null,
             IKeyEntityValidatorFor<TKey, TEntity> keyEntityValidator = null)
             : base(new DbContextSafeUsageVisitor(dbContextProvider),

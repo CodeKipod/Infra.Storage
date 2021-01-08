@@ -2,7 +2,6 @@
 using Roman.Ambinder.DataTypes.OperationResults;
 using Roman.Ambinder.Storage.Common.DataTypes;
 using Roman.Ambinder.Storage.Common.Interfaces;
-using Roman.Ambinder.Storage.Common.Interfaces.Common;
 using Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Common;
 using Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Impl;
 using System;
@@ -22,7 +21,7 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Common
     {
         private readonly bool _trackChangesOnRetrievedEntities;
 
-        public BaseEFCoreReadonlyRepositoryFor(
+        protected BaseEFCoreReadonlyRepositoryFor(
             bool trackChangesOnRetrievedEntities,
             IDbContextProvider dbContextProvider = null,
             IPrimaryKeyExpressionBuilder primaryKeyExpressionBuilder = null,
@@ -106,7 +105,7 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Common
                 var pagedRes = await query.ToPagedResultsArrayAsync(pagingParams, cancellationToken)
                      .ConfigureAwait(false);
 
-                var success = pagedRes != null && pagedRes.Items != null && pagedRes.Items.Count > 0;
+                var success = pagedRes?.Items != null && pagedRes.Items.Count > 0;
 
                 if (success)
                 {

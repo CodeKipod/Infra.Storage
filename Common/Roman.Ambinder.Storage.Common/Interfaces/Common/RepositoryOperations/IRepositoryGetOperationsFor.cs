@@ -8,7 +8,7 @@ using Roman.Ambinder.Storage.Common.DataTypes;
 
 namespace Roman.Ambinder.Storage.Common.Interfaces.Common.RepositoryOperations
 {
-    public interface IRepositoryGetOperationsFor<TKey, TEntity>
+    public interface IRepositoryGetOperationsFor<in TKey, TEntity>
       where TEntity : class, new()
     {
         /// <summary>
@@ -23,10 +23,12 @@ namespace Roman.Ambinder.Storage.Common.Interfaces.Common.RepositoryOperations
             params Expression<Func<TEntity, object>>[] toBeIncluded);
 
         /// <summary>
-        ///
+        /// 
         /// </summary>
         /// <param name="filter"></param>
+        /// <param name="orderBy"></param>
         /// <param name="cancellationToken"></param>
+        /// <param name="pagingParams"></param>
         /// <param name="toBeIncluded"></param>
         /// <returns></returns>
         Task<OperationResultOf<PagedItemsResultOf<TEntity>>> TryGetMultipleAsync(

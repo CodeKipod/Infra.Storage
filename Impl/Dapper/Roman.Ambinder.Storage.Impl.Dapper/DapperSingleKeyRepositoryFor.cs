@@ -49,8 +49,8 @@ namespace Roman.Ambinder.Storage.Impl.Dapper
             TEntity newEntity,
             CancellationToken cancellationToken = default)
         {
-            using var connection = await GetOpenedConnectionAsync().ConfigureAwait(false);
-            int numberOfChanges = await connection.InsertAsync(newEntity).ConfigureAwait(false);
+            await using var connection = await GetOpenedConnectionAsync().ConfigureAwait(false);
+            var numberOfChanges = await connection.InsertAsync(newEntity).ConfigureAwait(false);
             var success = numberOfChanges > 0;
 
             return success ?
@@ -73,7 +73,7 @@ namespace Roman.Ambinder.Storage.Impl.Dapper
             PagingParams pagingParams = null,
             params Expression<Func<TEntity, object>>[] toBeIncluded)
         {
-            using var connection = await GetOpenedConnectionAsync().ConfigureAwait(false);
+            await using var connection = await GetOpenedConnectionAsync().ConfigureAwait(false);
             var where = filter.ToSql();
 
             var sqlQuery = $@"SELECT * FROM [{_tableName}]
@@ -87,10 +87,9 @@ namespace Roman.Ambinder.Storage.Impl.Dapper
             CancellationToken cancellation = default,
             params Expression<Func<TEntity, object>>[] toBeIncluded)
         {
-            using var connection = await GetOpenedConnectionAsync().ConfigureAwait(false);
+            await using var connection = await GetOpenedConnectionAsync().ConfigureAwait(false);
             var foundEntity = await connection.GetAsync<TEntity>(key).ConfigureAwait(false);
-            return foundEntity != null ? foundEntity.AsSuccessfulOpRes() :
-                $"Failed to find {typeof(TEntity).Name} by {key}".AsFailedOpResOf<TEntity>();
+            return foundEntity?.AsSuccessfulOpRes() ?? $"Failed to find {typeof(TEntity).Name} by {key}".AsFailedOpResOf<TEntity>();
         }
 
         public async Task<OperationResultOf<TEntity>> TryRemoveAsync(
@@ -99,7 +98,7 @@ namespace Roman.Ambinder.Storage.Impl.Dapper
         {
             var getOpRes = await TryGetSingleAsync(key, cancellationToken).ConfigureAwait(false);
             if (!getOpRes) return getOpRes;
-            using var connection = await GetOpenedConnectionAsync().ConfigureAwait(false);
+            await using var connection = await GetOpenedConnectionAsync().ConfigureAwait(false);
             var success = await connection.DeleteAsync<TEntity>(getOpRes.Value).ConfigureAwait(false);
 
             return success ? getOpRes :
@@ -113,12 +112,12 @@ namespace Roman.Ambinder.Storage.Impl.Dapper
         {
             var getOpRes = await TryGetSingleAsync(key, cancellationToken).ConfigureAwait(false);
             if (!getOpRes) return getOpRes;
-            using var connection = await GetOpenedConnectionAsync().ConfigureAwait(false);
+            await using var connection = await GetOpenedConnectionAsync().ConfigureAwait(false);
 
             var existingEntity = getOpRes.Value;
             updateAction(existingEntity);
 
-            var success = await connection.UpdateAsync<TEntity>(existingEntity).ConfigureAwait(false);
+            var success = await connection.UpdateAsync(existingEntity).ConfigureAwait(false);
 
             return success ? existingEntity.AsSuccessfulOpRes() :
                  $"Failed to update {typeof(TEntity).Name} with key:{key}".AsFailedOpResOf<TEntity>();

@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace Roman.Ambinder.Storage.Common.Interfaces
 {
-    public interface IStoreSessionSafeUsageVisitor<TStoreSession> : IDisposable
+    public interface IStoreSessionSafeUsageVisitor<out TStoreSession> : IDisposable
         where TStoreSession : IDisposable
     {
         OperationResult TryUse(Action<TStoreSession> usage);

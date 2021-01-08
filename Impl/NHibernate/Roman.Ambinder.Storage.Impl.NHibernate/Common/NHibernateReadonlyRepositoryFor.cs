@@ -4,7 +4,6 @@ using System.Linq.Expressions;
 using System.Threading;
 using System.Threading.Tasks;
 using NHibernate;
-using NHibernate.Linq;
 using Roman.Ambinder.DataTypes.OperationResults;
 using Roman.Ambinder.Storage.Common.DataTypes;
 using Roman.Ambinder.Storage.Common.Interfaces;
@@ -42,14 +41,10 @@ namespace Roman.Ambinder.Storage.Impl.NHibernate.Common
                 if (orderBy != null)
                     query = orderBy(query);
 
-                var res = await query
-                    .ToListAsync(cancellationToken)
-                    .ConfigureAwait(false);
-
                 var pagedRes = await query.ToPagedResultsArrayAsync(pagingParams, cancellationToken)
                       .ConfigureAwait(false);
 
-                var success = pagedRes != null && pagedRes.Items != null && pagedRes.Items.Count > 0;
+                var success = pagedRes?.Items != null && pagedRes.Items.Count > 0;
 
                 if (success)
                 {
@@ -70,7 +65,7 @@ namespace Roman.Ambinder.Storage.Impl.NHibernate.Common
                 return Task.FromResult(validationOpRes.ErrorMessage.
                     AsFailedOpResOf<TEntity>());
 
-            return StoreSessionSafeUsageVisitor.TryUseAsync<TEntity>(async session =>
+            return StoreSessionSafeUsageVisitor.TryUseAsync(async session =>
                 {
                     var foundEntity = await session.GetAsync<TEntity>(key, cancellation);
 

@@ -1,5 +1,3 @@
-using System;
-
 namespace Storage.Examples.AspCore.Entities
 {
     public class Address

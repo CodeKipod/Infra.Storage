@@ -5,7 +5,7 @@ using Roman.Ambinder.DataTypes.OperationResults;
 
 namespace Roman.Ambinder.Storage.Common.Interfaces.Common.RepositoryOperations
 {
-    public interface IRepositoryUpdateOperationsFor<TKey, TEntity>
+    public interface IRepositoryUpdateOperationsFor<in TKey, TEntity>
        where TEntity : class, new()
     {
         Task<OperationResultOf<TEntity>> TryUpdateAsync(TKey key,

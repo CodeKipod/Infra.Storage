@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Roman.Ambinder.DataTypes.OperationResults;
-using Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Common;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
@@ -27,7 +26,7 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Impl
             {
                 if (_dbContextProvider.DisposeAfterUsage)
                 {
-                    using var dbContext = _dbContextProvider.Get();
+                    await using var dbContext = _dbContextProvider.Get();
                     return await usage(dbContext)
                         .ConfigureAwait(false);
                 }
@@ -69,7 +68,7 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Impl
             {
                 if (_dbContextProvider.DisposeAfterUsage)
                 {
-                    using var dbContext = _dbContextProvider.Get();
+                    await using var dbContext = _dbContextProvider.Get();
                     return await usage(dbContext)
                         .ConfigureAwait(false);
                 }
@@ -100,6 +99,7 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Impl
                 var dbContext = _dbContextProvider.Get();
                 dbContext?.Dispose();
             }
+            // ReSharper disable once EmptyGeneralCatchClause
             catch { }
         }
     }

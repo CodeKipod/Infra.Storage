@@ -1,7 +1,8 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Common;
 using Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.SingleKey.Helpers;
 using System.Threading.Tasks;
+using Roman.Ambinder.Storage.Common.Interfaces.Common;
+using Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.SingleKey.Entities;
 
 namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.SingleKey.NonHierarchicalEntityTests
 {
@@ -90,7 +91,8 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.SingleKey.NonHie
             Assert.IsFalse(getOpRes);
         }
 
-        private static async Task<Entities.SingleKeyPerson> CreateAndCommitPersonAsync(BaseEFCoreUnitOfWorkRepositoryFor<int, Entities.SingleKeyPerson> unitOfWork)
+        private static async Task<Entities.SingleKeyPerson> CreateAndCommitPersonAsync(
+            IUnitOfWorkRepositoryFor<int, SingleKeyPerson> unitOfWork)
         {
             var person = SingleKeyRepositoryArranger.CreatePerson();
             var addOpRes = await unitOfWork.Repository.TryAddAsync(person);

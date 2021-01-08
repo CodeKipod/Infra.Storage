@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 namespace Roman.Ambinder.Storage.Common.Interfaces
 {
 
-    public interface IPrimaryKeyExpressionBuilderFor<TStoreSession>
+    public interface IPrimaryKeyExpressionBuilderFor<in TStoreSession>
     {
         OperationResultOf<Expression<Func<TEntity, bool>>> TryBuildForSingleKey<TKey, TEntity>(
             TStoreSession dbContext,

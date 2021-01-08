@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Common;
+using Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Common.Interfaces;
 
-namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Impl
+namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Impl.DbContextLifeCycle.Providers
 {
     /// <summary>
     ///

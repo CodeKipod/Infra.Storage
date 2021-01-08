@@ -1,12 +1,12 @@
-﻿using Roman.Ambinder.DataTypes.OperationResults;
-using Roman.Ambinder.Storage.Common.DataTypes;
-using System;
+﻿using System;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading;
 using System.Threading.Tasks;
+using Roman.Ambinder.DataTypes.OperationResults;
+using Roman.Ambinder.Storage.Common.DataTypes;
 
-namespace Roman.Ambinder.Storage.Common.Interfaces.Common
+namespace Roman.Ambinder.Storage.Common.Interfaces.Common.RepositoryOperations
 {
     public interface IRepositoryGetOperationsFor<TKey, TEntity>
       where TEntity : class, new()

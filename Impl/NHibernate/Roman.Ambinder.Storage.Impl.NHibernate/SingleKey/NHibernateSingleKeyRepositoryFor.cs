@@ -1,5 +1,6 @@
 ﻿using NHibernate;
 using Roman.Ambinder.Storage.Common.Interfaces;
+using Roman.Ambinder.Storage.Impl.NHibernate.Common;
 
 namespace Roman.Ambinder.Storage.Impl.NHibernate.SingleKey
 {

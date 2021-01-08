@@ -1,11 +1,11 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.SingleKey.Entities;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.CompositeKey.Entities;
+using Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.CompositeKey.Helpers;
 
-namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.CompositeKey.NonHierarchicalEntityTests
+namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.CompositeKey.NonHierarchicalEntityTests.Query
 {
     [TestClass]
     public class EFCoreCompositeKeyReadonlyRepositoryForTests

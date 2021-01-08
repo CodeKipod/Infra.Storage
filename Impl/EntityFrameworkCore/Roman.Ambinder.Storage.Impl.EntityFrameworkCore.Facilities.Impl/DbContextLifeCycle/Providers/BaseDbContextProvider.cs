@@ -1,9 +1,9 @@
-﻿using Roman.Ambinder.DataTypes.OperationResults;
-using Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Common;
-using System;
+﻿using System;
 using System.Threading.Tasks;
+using Roman.Ambinder.DataTypes.OperationResults;
+using Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Common.Interfaces;
 
-namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Impl
+namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Impl.DbContextLifeCycle.Providers
 {
     public abstract class BaseDbContextProvider : IDbContextProvider
     {

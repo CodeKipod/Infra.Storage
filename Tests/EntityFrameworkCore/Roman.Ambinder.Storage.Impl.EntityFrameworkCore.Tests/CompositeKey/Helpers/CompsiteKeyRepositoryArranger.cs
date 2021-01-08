@@ -1,11 +1,10 @@
-﻿using Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.CompositeKey.Helpers;
-using Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.SingleKey.Entities;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
-using CompositeKeyRepository = Roman.Ambinder.Storage.Impl.EntityFrameworkCore.CompositeKey.EFCoreCompositeKeyRepositoryFor<Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.SingleKey.Entities.CompsiteKeyPerson>;
-using CompositeKeyUnitOfWorkRepository = Roman.Ambinder.Storage.Impl.EntityFrameworkCore.CompositeKey.EFCoreCompositeKeyUnitOfWorkRepositoryFor<Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.SingleKey.Entities.CompsiteKeyPerson>;
+using Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.CompositeKey.Entities;
+using CompositeKeyRepository = Roman.Ambinder.Storage.Impl.EntityFrameworkCore.CompositeKey.EFCoreCompositeKeyRepositoryFor<Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.CompositeKey.Entities.CompsiteKeyPerson>;
+using CompositeKeyUnitOfWorkRepository = Roman.Ambinder.Storage.Impl.EntityFrameworkCore.CompositeKey.EFCoreCompositeKeyUnitOfWorkRepositoryFor<Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.CompositeKey.Entities.CompsiteKeyPerson>;
 
-namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.CompositeKey.NonHierarchicalEntityTests
+namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.CompositeKey.Helpers
 {
     public static class CompsiteKeyRepositoryArranger
     {

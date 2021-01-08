@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Impl.Test
+namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Impl.Test.Entities
 {
     public class SameValueTypeComposedKeysEntity
     {

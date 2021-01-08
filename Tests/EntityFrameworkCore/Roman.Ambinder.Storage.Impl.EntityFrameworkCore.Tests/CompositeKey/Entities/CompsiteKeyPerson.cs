@@ -1,6 +1,6 @@
 using System;
 
-namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.SingleKey.Entities
+namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.CompositeKey.Entities
 {
     public class CompsiteKeyPerson : IEquatable<CompsiteKeyPerson>
     {

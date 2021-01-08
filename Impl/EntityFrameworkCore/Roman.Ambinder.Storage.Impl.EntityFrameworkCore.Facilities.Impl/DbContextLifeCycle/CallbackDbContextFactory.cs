@@ -1,8 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Common;
-using System;
+﻿using System;
+using Microsoft.EntityFrameworkCore;
+using Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Common.Interfaces;
 
-namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Impl
+namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Impl.DbContextLifeCycle
 {
     public class CallbackDbContextFactory : IDbContextFactory
     {

@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Impl;
 using System;
+using Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Impl.DbContextLifeCycle;
+using Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Impl.DbContextLifeCycle.Providers;
 
 namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.CompositeKey.Helpers
 {

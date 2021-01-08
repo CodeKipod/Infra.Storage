@@ -2,6 +2,7 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using Roman.Ambinder.Storage.Common.Interfaces.Common.RepositoryOperations;
 
 namespace Roman.Ambinder.Storage.Common.Interfaces.Common
 {

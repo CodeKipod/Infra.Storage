@@ -1,6 +1,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Impl.Test.Entities;
 
-namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Impl.Test
+namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Impl.Test.PrimaryKeyExpressionBuilderForTests
 {
     [TestClass]
     public class PrimaryKeyExpressionBuilderForSingleKeyTests

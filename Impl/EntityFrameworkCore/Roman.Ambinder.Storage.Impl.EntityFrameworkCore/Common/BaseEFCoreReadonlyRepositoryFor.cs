@@ -3,7 +3,6 @@ using Roman.Ambinder.DataTypes.OperationResults;
 using Roman.Ambinder.Storage.Common.DataTypes;
 using Roman.Ambinder.Storage.Common.Interfaces;
 using Roman.Ambinder.Storage.Common.Interfaces.Common;
-using Roman.Ambinder.Storage.EntityFrameworkCore.Facilities.Common;
 using Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Common;
 using Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Impl;
 using System;
@@ -11,6 +10,8 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading;
 using System.Threading.Tasks;
+using Roman.Ambinder.Storage.Common.Interfaces.Common.RepositoryOperations;
+using Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Common.Interfaces;
 
 namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Common
 {

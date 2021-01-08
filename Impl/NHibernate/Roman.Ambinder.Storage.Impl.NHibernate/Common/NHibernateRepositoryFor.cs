@@ -1,12 +1,12 @@
-﻿using NHibernate;
+﻿using System;
+using System.Threading;
+using System.Threading.Tasks;
+using NHibernate;
 using Roman.Ambinder.DataTypes.OperationResults;
 using Roman.Ambinder.Storage.Common.Interfaces;
 using Roman.Ambinder.Storage.Common.Interfaces.Common;
-using System;
-using System.Threading;
-using System.Threading.Tasks;
 
-namespace Roman.Ambinder.Storage.Impl.NHibernate
+namespace Roman.Ambinder.Storage.Impl.NHibernate.Common
 {
 
     public class NHibernateRepositoryFor<TKey, TEntity> :

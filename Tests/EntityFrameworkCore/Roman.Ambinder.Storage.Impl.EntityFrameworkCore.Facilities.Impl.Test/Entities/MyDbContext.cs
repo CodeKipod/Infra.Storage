@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Impl.Test
+namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Impl.Test.Entities
 {
     public class MyDbContext : DbContext
     {

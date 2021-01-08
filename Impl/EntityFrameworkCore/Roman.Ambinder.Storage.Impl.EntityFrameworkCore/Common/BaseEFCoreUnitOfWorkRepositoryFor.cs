@@ -5,6 +5,7 @@ using Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Impl;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Common.Interfaces;
 
 namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Common
 {

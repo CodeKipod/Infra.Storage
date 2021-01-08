@@ -14,8 +14,8 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.CompositeKey.Non
         public async Task ExistingPerson_GetSingle_ReturnedExistingPerson()
         {
             //Arrange
-            var repository = await CompsiteKeyRepositoryArranger.TryGetRepositoryAsync().ConfigureAwait(false);
-            var person = CompsiteKeyRepositoryArranger.CreatePerson();
+            var repository = await CompositeKeyRepositoryArranger.TryGetRepositoryAsync().ConfigureAwait(false);
+            var person = CompositeKeyRepositoryArranger.CreatePerson();
             var addOpRes = await repository.TryAddAsync(person)
                 .ConfigureAwait(false);
             Assert.IsTrue(addOpRes, addOpRes.ErrorMessage);
@@ -36,12 +36,12 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.CompositeKey.Non
             //Arrange
             const byte numberOfPeople = 10;
             const byte minimalAge = 10;
-            var repository = await CompsiteKeyRepositoryArranger.TryGetRepositoryAsync().ConfigureAwait(false);
+            var repository = await CompositeKeyRepositoryArranger.TryGetRepositoryAsync().ConfigureAwait(false);
             for (var i = 0; i < numberOfPeople; i++)
             {
                 var postfix = (i + 1).ToString();
                 byte age = (byte)(i + minimalAge);
-                var person = CompsiteKeyRepositoryArranger.CreatePerson(age, postfix, postfix);
+                var person = CompositeKeyRepositoryArranger.CreatePerson(age, postfix, postfix);
                 var addOpRes = await repository.TryAddAsync(person)
                     .ConfigureAwait(false);
                 Assert.IsTrue(addOpRes, addOpRes.ErrorMessage);
@@ -62,13 +62,13 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.CompositeKey.Non
             //Arrange
             const byte numberOfPeople = 10;
             const byte minimalAge = 10;
-            var repository = await CompsiteKeyRepositoryArranger.TryGetRepositoryAsync().ConfigureAwait(false);
+            var repository = await CompositeKeyRepositoryArranger.TryGetRepositoryAsync().ConfigureAwait(false);
             var localRepo = new List<CompsiteKeyPerson>(numberOfPeople);
             for (var i = 0; i < numberOfPeople; i++)
             {
                 var postfix = (i + 1).ToString();
                 byte age = (byte)(i + minimalAge);
-                var person = CompsiteKeyRepositoryArranger.CreatePerson(age, postfix, postfix);
+                var person = CompositeKeyRepositoryArranger.CreatePerson(age, postfix, postfix);
                 localRepo.Add(person);
                 var addOpRes = await repository.TryAddAsync(person)
                     .ConfigureAwait(false);

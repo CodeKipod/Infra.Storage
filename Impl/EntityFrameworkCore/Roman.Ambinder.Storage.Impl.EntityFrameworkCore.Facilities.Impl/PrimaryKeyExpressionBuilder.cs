@@ -16,7 +16,7 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Impl
         {
             if (key is object[] keys)
             {
-                return TryBuildForMultitypeCompositeKey<TEntity>(dbContext, keys);
+                return TryBuildForMultiTypeCompositeKey<TEntity>(dbContext, keys);
             }
 
             try
@@ -58,7 +58,7 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Impl
                 var parameter = Expression.Parameter(typeof(TEntity), "entity");
 
                 BinaryExpression combinedEqualityExpression = null;
-                for (int i = 0; i < compostiteKeyParts.Length; i++)
+                for (var i = 0; i < compostiteKeyParts.Length; i++)
                 {
                     var property = Expression.Property(parameter, keyPropertieNames[i]);
                     var value = Expression.Constant(compostiteKeyParts[i]);
@@ -76,9 +76,9 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Impl
             catch (Exception ex) { return ex.AsFailedOpResOf<Expression<Func<TEntity, bool>>>(); }
         }
 
-        public OperationResultOf<Expression<Func<TEntity, bool>>> TryBuildForMultitypeCompositeKey<TEntity>(
+        public OperationResultOf<Expression<Func<TEntity, bool>>> TryBuildForMultiTypeCompositeKey<TEntity>(
             DbContext dbContext,
-            object[] compostiteKeyParts)
+            object[] compositeKeyParts)
             where TEntity : class, new()
         {
             try
@@ -89,17 +89,17 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Impl
                     .Select(x => x.Name)
                     .ToArray();
 
-                if (compostiteKeyParts.Length != keyPropertieNames.Length)
-                    return $"Invalid number of keys.\nProvided {compostiteKeyParts.Length} keys, when {typeof(TEntity).Name} actually has a composed of {keyPropertieNames.Length} keys"
+                if (compositeKeyParts.Length != keyPropertieNames.Length)
+                    return $"Invalid number of keys.\nProvided {compositeKeyParts.Length} keys, when {typeof(TEntity).Name} actually has a composed of {keyPropertieNames.Length} keys"
                          .AsFailedOpResOf<Expression<Func<TEntity, bool>>>();
 
                 var parameter = Expression.Parameter(typeof(TEntity), "entity");
 
                 BinaryExpression combinedEqualityExpression = null;
-                for (int i = 0; i < compostiteKeyParts.Length; i++)
+                for (var i = 0; i < compositeKeyParts.Length; i++)
                 {
                     var property = Expression.Property(parameter, keyPropertieNames[i]);
-                    var value = Expression.Constant(compostiteKeyParts[i]);
+                    var value = Expression.Constant(compositeKeyParts[i]);
                     var currentEqualityExpression = Expression.Equal(property, value);
 
                     combinedEqualityExpression = combinedEqualityExpression != null ?

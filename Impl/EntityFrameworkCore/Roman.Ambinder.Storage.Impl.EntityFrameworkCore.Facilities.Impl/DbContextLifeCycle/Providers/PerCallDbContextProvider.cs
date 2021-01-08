@@ -12,6 +12,6 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Impl.DbCont
             : base(dbContextFactory, disposeAfterUsage: true)
         { }
 
-        public override DbContext Get() => _dbContextFactory.Create();
+        public override DbContext Get() => DbContextFactory.Create();
     }
 }

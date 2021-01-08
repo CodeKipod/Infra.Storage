@@ -11,7 +11,7 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.SingleKey.Helper
             string firstNamePostFix = null,
             string lastNamePostFix = null)
         {
-            return new SingleKeyPerson(age: ageOverride.HasValue ? ageOverride.Value : (byte)10,
+            return new SingleKeyPerson(age: ageOverride ?? (byte)10,
                 firstName: firstNamePostFix != null ? $"Roman{firstNamePostFix}" : "Roman",
                 lastName: lastNamePostFix != null ? $"Ambinder{lastNamePostFix}" : "Ambinder");
         }

@@ -13,7 +13,7 @@ namespace Roman.Ambinder.Storage.Common.Interfaces
            where TEntity : class, new();
 
 
-        OperationResultOf<Expression<Func<TEntity, bool>>> TryBuildForMultitypeCompositeKey<TEntity>(
+        OperationResultOf<Expression<Func<TEntity, bool>>> TryBuildForMultiTypeCompositeKey<TEntity>(
             TStoreSession dbContext,
               object[] compositeKey)
           where TEntity : class, new();

@@ -13,7 +13,7 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.CompositeKey.Hel
              : base(new CallbackDbContextFactory(() => new CompositeKeyPeopleDbContext()),
                    disposeAfterUsage: false)
         {
-            _lazyDbContextProvider = new Lazy<DbContext>(_dbContextFactory.Create,
+            _lazyDbContextProvider = new Lazy<DbContext>(DbContextFactory.Create,
                 isThreadSafe: true);
         }
 

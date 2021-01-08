@@ -16,7 +16,7 @@
 //        {
 //            if (key is object[] keys)
 //            {
-//                return TryBuildForMultitypeCompositeKey<TEntity>(dbContext, keys);
+//                return TryBuildForMultiTypeCompositeKey<TEntity>(dbContext, keys);
 //            }
 
 //            try
@@ -38,7 +38,7 @@
 //            catch (Exception ex) { return ex.AsFailedOpResOf<Expression<Func<TEntity, bool>>>(); }
 //        }
 
-//        public OperationResultOf<Expression<Func<TEntity, bool>>> TryBuildForMultitypeCompositeKey<TEntity>(
+//        public OperationResultOf<Expression<Func<TEntity, bool>>> TryBuildForMultiTypeCompositeKey<TEntity>(
 //            ISession dbContext,
 //            object[] compostiteKeyParts)
 //            where TEntity : class, new()

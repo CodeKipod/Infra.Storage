@@ -6,19 +6,19 @@ using CompositeKeyUnitOfWorkRepository = Roman.Ambinder.Storage.Impl.EntityFrame
 
 namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.CompositeKey.Helpers
 {
-    public static class CompsiteKeyRepositoryArranger
+    public static class CompositeKeyRepositoryArranger
     {
-        private static int idsCounter = 1;
+        private static int _idsCounter = 1;
 
         public static CompsiteKeyPerson CreatePerson(byte? ageOverride = null,
             string firstNamePostFix = null,
             string lastNamePostFix = null)
         {
-            var person = new CompsiteKeyPerson(age: ageOverride.HasValue ? ageOverride.Value : (byte)10,
+            var person = new CompsiteKeyPerson(age: ageOverride ?? (byte)10,
                 firstName: firstNamePostFix != null ? $"Roman{firstNamePostFix}" : "Roman",
                 lastName: lastNamePostFix != null ? $"Ambinder{lastNamePostFix}" : "Ambinder");
 
-            person.SetId(Interlocked.Increment(ref idsCounter));
+            person.SetId(Interlocked.Increment(ref _idsCounter));
 
             return person;
         }

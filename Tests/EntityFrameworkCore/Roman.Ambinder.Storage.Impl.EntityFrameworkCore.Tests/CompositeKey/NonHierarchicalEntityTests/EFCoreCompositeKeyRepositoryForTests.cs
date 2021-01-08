@@ -11,9 +11,9 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.CompositeKey.Non
         public async Task NonExistingPerson_Add_Added()
         {
             //Arrange
-            var repository = await CompsiteKeyRepositoryArranger.TryGetRepositoryAsync()
+            var repository = await CompositeKeyRepositoryArranger.TryGetRepositoryAsync()
                 .ConfigureAwait(false);
-            var person = CompsiteKeyRepositoryArranger.CreatePerson();
+            var person = CompositeKeyRepositoryArranger.CreatePerson();
 
             //Act
             var opRes = await repository.TryAddAsync(person)
@@ -27,8 +27,8 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.CompositeKey.Non
         public async Task ExistingPerson_Get_ReturnedExistingPerson()
         {
             //Arrange
-            var repository = await CompsiteKeyRepositoryArranger.TryGetRepositoryAsync().ConfigureAwait(false);
-            var person = CompsiteKeyRepositoryArranger.CreatePerson();
+            var repository = await CompositeKeyRepositoryArranger.TryGetRepositoryAsync().ConfigureAwait(false);
+            var person = CompositeKeyRepositoryArranger.CreatePerson();
             var addOpRes = await repository.TryAddAsync(person)
                 .ConfigureAwait(false);
             Assert.IsTrue(addOpRes, addOpRes.ErrorMessage);
@@ -48,8 +48,8 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.CompositeKey.Non
         {
             //Arrange
             const string updatedValue = "Updated";
-            var repository = await CompsiteKeyRepositoryArranger.TryGetRepositoryAsync().ConfigureAwait(false);
-            var person = CompsiteKeyRepositoryArranger.CreatePerson();
+            var repository = await CompositeKeyRepositoryArranger.TryGetRepositoryAsync().ConfigureAwait(false);
+            var person = CompositeKeyRepositoryArranger.CreatePerson();
             var addOpRes = await repository.TryAddAsync(person)
                 .ConfigureAwait(false);
             var existingEntityId = new object[] { addOpRes.Value.Key1, addOpRes.Value.Key2, addOpRes.Value.Key3 };
@@ -78,8 +78,8 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Tests.CompositeKey.Non
         public async Task ExistingPerson_Remove_Removed()
         {
             //Arrange
-            var repository = await CompsiteKeyRepositoryArranger.TryGetRepositoryAsync().ConfigureAwait(false);
-            var person = CompsiteKeyRepositoryArranger.CreatePerson();
+            var repository = await CompositeKeyRepositoryArranger.TryGetRepositoryAsync().ConfigureAwait(false);
+            var person = CompositeKeyRepositoryArranger.CreatePerson();
             var addOpRes = await repository.TryAddAsync(person)
                 .ConfigureAwait(false);
             var existingEntityId = new object[] { addOpRes.Value.Key1, addOpRes.Value.Key2, addOpRes.Value.Key3 };

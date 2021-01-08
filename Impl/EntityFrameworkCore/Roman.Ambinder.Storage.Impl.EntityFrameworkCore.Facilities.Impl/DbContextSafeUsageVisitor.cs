@@ -30,11 +30,9 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Impl
                     return await usage(dbContext)
                         .ConfigureAwait(false);
                 }
-                else
-                {
-                    return await usage(_dbContextProvider.Get())
-                            .ConfigureAwait(false);
-                }
+
+                return await usage(_dbContextProvider.Get())
+                    .ConfigureAwait(false);
             }
             catch (Exception ex)
             {
@@ -72,11 +70,9 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Impl
                     return await usage(dbContext)
                         .ConfigureAwait(false);
                 }
-                else
-                {
-                    return await usage(_dbContextProvider.Get())
-                            .ConfigureAwait(false);
-                }
+
+                return await usage(_dbContextProvider.Get())
+                    .ConfigureAwait(false);
             }
             catch (Exception ex)
             {

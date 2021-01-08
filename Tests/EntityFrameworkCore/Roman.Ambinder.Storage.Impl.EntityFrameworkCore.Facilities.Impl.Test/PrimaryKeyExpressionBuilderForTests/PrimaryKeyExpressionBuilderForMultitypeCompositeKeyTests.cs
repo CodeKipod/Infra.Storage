@@ -14,8 +14,8 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Impl.Test.P
             using var ctx = new MyDbContext();
 
             //Act
-            var buildKeyPredicteOpres = builder.TryBuildForMultitypeCompositeKey<SameValueTypeComposedKeysEntity>(
-                ctx, compostiteKeyParts:
+            var buildKeyPredicteOpres = builder.TryBuildForMultiTypeCompositeKey<SameValueTypeComposedKeysEntity>(
+                ctx, compositeKeyParts:
                 new object[] { 1, 2, 3 });
 
             //Assert
@@ -30,8 +30,8 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Impl.Test.P
             using var ctx = new MyDbContext();
 
             //Act
-            var buildKeyPredicteOpres = builder.TryBuildForMultitypeCompositeKey<SameValueTypeComposedKeysEntity>(
-                ctx, compostiteKeyParts:
+            var buildKeyPredicteOpres = builder.TryBuildForMultiTypeCompositeKey<SameValueTypeComposedKeysEntity>(
+                ctx, compositeKeyParts:
                 new object[] { 1, 2 });
 
             //Assert
@@ -46,8 +46,8 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Impl.Test.P
             using var ctx = new MyDbContext();
 
             //Act
-            var buildKeyPredicteOpres = builder.TryBuildForMultitypeCompositeKey<SameValueTypeComposedKeysEntity>(
-                ctx, compostiteKeyParts:
+            var buildKeyPredicteOpres = builder.TryBuildForMultiTypeCompositeKey<SameValueTypeComposedKeysEntity>(
+                ctx, compositeKeyParts:
                 new object[] { 1, 2, "3" });
 
             //Assert
@@ -62,8 +62,8 @@ namespace Roman.Ambinder.Storage.Impl.EntityFrameworkCore.Facilities.Impl.Test.P
             using var ctx = new MyDbContext();
 
             //Act
-            var buildKeyPredicteOpres = builder.TryBuildForMultitypeCompositeKey<SameRefTypeKeysComposedEntity>(
-                ctx, compostiteKeyParts:
+            var buildKeyPredicteOpres = builder.TryBuildForMultiTypeCompositeKey<SameRefTypeKeysComposedEntity>(
+                ctx, compositeKeyParts:
                 new object[] { "1", "2", "3" });
 
             //Assert

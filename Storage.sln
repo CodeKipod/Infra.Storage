@@ -49,7 +49,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Examples", "Examples", "{D4
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Storage.Examples.AspCore", "Examples\Storage.Examples.AspCore\Storage.Examples.AspCore.csproj", "{BA7BEDD2-3385-4DD2-92FE-531700077040}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Roman.Ambinder.Storage.Impl.Dapper", "Impl\Dapper\Roman.Ambinder.Storage.Impl.Dapper\Roman.Ambinder.Storage.Impl.Dapper.csproj", "{ECB9B169-320E-4A52-8256-E43B9CCF102B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Roman.Ambinder.Storage.Impl.Dapper", "Impl\Dapper\Roman.Ambinder.Storage.Impl.Dapper\Roman.Ambinder.Storage.Impl.Dapper.csproj", "{ECB9B169-320E-4A52-8256-E43B9CCF102B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MongoDb", "MongoDb", "{E88BAB93-1E48-4794-9144-78902FD1D79C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Roman.Ambinder.Storage.Impl.MongoDb", "Impl\MongoDb\Roman.Ambinder.Storage.Impl.MongoDb\Roman.Ambinder.Storage.Impl.MongoDb.csproj", "{DD52F344-7B36-4025-8AB0-D5B140F01CD4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -105,6 +109,10 @@ Global
 		{ECB9B169-320E-4A52-8256-E43B9CCF102B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ECB9B169-320E-4A52-8256-E43B9CCF102B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ECB9B169-320E-4A52-8256-E43B9CCF102B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD52F344-7B36-4025-8AB0-D5B140F01CD4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD52F344-7B36-4025-8AB0-D5B140F01CD4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD52F344-7B36-4025-8AB0-D5B140F01CD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD52F344-7B36-4025-8AB0-D5B140F01CD4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -130,6 +138,8 @@ Global
 		{B9CD0251-8F06-4B50-9B6C-E87ADED54917} = {66B32EFE-05CF-47D3-9571-2C05FE6C0F6D}
 		{BA7BEDD2-3385-4DD2-92FE-531700077040} = {D4629EE9-0A66-4A5A-9C4B-0605493A4163}
 		{ECB9B169-320E-4A52-8256-E43B9CCF102B} = {682495C7-8D74-455B-B0CB-082D2B4B8571}
+		{E88BAB93-1E48-4794-9144-78902FD1D79C} = {1EFAA1AE-FBAE-4129-B967-740699B9E01D}
+		{DD52F344-7B36-4025-8AB0-D5B140F01CD4} = {62CD1A36-7238-4B59-8E45-BE029E93FC56}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0C29162D-CA11-43A8-84EB-0922423F1731}
